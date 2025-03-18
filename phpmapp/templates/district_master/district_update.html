@@ -1,0 +1,88 @@
+<!-- district_update.html -->
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Content -->
+<div class="card">
+    <h5 class="card-header">District / Directorate Master</h5>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {% comment %} <div class="col-12">
+                <h6>District Detail</h6>
+                <hr class="mt-0">
+            </div> {% endcomment %}
+            <div class="row">
+            <!-- District Code -->
+            <div class="col-md-4">
+                <label for="district_code">District Code</label>
+                <input type="text" id="district_code" class="form-control" placeholder="Enter District Code" name="district_code" value="{{ district.district_code }}" required>
+            </div>
+
+            <!-- District Name -->
+            <div class="col-md-4">
+                <label for="district_name">District Name</label>
+                <input class="form-control" type="text" id="district_name" name="district_name" placeholder="Enter District Name" value="{{ district.district_name  }}" required>
+            </div>
+
+            <!-- Address -->
+            <div class="col-md-4">
+                <label for="district_address">Address</label>
+                <input class="form-control" type="text" id="district_address" name="district_address" placeholder="Enter Address" value="{{ district.district_address  }}" required>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-4">
+                <label for="district_phone">Phone</label>
+                <input class="form-control" type="text" id="district_phone" name="district_phone" placeholder="Enter Phone Number" value="{{ district.district_phone  }}" required>
+            </div>
+
+            <!-- Fax -->
+            <div class="col-md-4">
+                <label for="district_fax">Fax</label>
+                <input class="form-control" type="text" id="district_fax" name="district_fax" placeholder="Enter Fax Number" value="{{ district.district_fax  }}">
+            </div>
+
+            <!-- Mobile -->
+            <div class="col-md-4">
+                <label for="district_mobile">Mobile</label>
+                <input class="form-control" type="text" id="district_mobile" name="district_mobile" placeholder="Enter Mobile Number" value="{{ district.district_mobile  }}" required>
+            </div>
+
+            <!-- Contact Person -->
+            <div class="col-md-4">
+                <label for="district_contact_person">Contact Person</label>
+                <input class="form-control" type="text" id="district_contact_person" name="district_contact_person" placeholder="Enter Contact Person" value="{{ district.district_contact_person }}" required>
+            </div>
+
+            <!-- Active -->
+            <div class="col-md-2">
+                <br/>
+                <label class="switch switch-datk">
+                    <input type="checkbox" class="switch-input" name="active" {% if district.active %}checked{% endif %} />
+                    <span class="switch-toggle-slider">
+                        <span class="switch-on">
+                            <i class="bx bx-check"></i>
+                        </span>
+                        <span class="switch-off">
+                            <i class="bx bx-x"></i>
+                        </span>
+                    </span>
+                    <span class="switch-label">Active</span>
+                </label>
+            </div>
+            
+            
+           
+        </div> 
+        <!-- Buttons -->
+        <div class="col-12 text-end">
+                <button type="submit" name="submitButton" class="btn btn-primary">Update</button>
+                <a href="{% url 'district_list' %}" class="btn btn-md btn-primary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ Content -->
+
+{% endblock %}

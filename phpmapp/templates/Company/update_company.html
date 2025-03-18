@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h3>Update</h3>
+
+
+<!-- Card for the Form -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Update Company Information</h5>
+    </div>
+    <div class="card-body">
+        <!-- Unified Update Form -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Data Fields -->
+                <div class="mb-3 col-md-4">
+                    <label for="company_academic_year" class="form-label"> Company Academic Year </label>
+                    <input type="text" class="form-control" id="company_academic_year" name="company_academic_year" value="{{ object.company_academic_year }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_distirict" class="form-label"> Company District </label>
+                    <input type="text" class="form-control" id="company_distirict" name="company_distirict" value="{{ object.company_distirict }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_address" class="form-label"> Company Address </label>
+                    <input type="text" class="form-control" id="company_address" name="company_address" value="{{ object.company_address }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_code" class="form-label">Company Code </label>
+                    <input type="text" class="form-control" id="company_code" name="company_code" value="{{ object.company_code }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                        <label for="company_logo" class="form-label"> Company Logo </label>
+                        <input class="form-control" type="file" id="company_logo" name="file" multiple>
+                    </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_name" class="form-label"> Company Name </label>
+                    <input type="text" class="form-control" id="company_name" name="company_name" value="{{ object.company_name }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_gstin" class="form-label"> Company GSTIN </label>
+                    <input type="text" class="form-control" id="company_gstin" name="company_gstin" value="{{ object.company_gstin }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_pincode" class="form-label"> Company Pincode </label>
+                    <input type="text" class="form-control" id="company_pincode" name="company_pincode" value="{{ object.company_pincode }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="company_state" class="form-label"> Company State </label>
+                    <input type="text" class="form-control" id="company_state" name="company_state" value="{{ object.company_state }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <br/>
+                    <div class="form-check form-switch mb-2">
+                        <!-- Ensure 'checked' is added when district.active is True -->
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="active" {% if object.active %}checked{% endif %}> Active
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Update Button -->
+{#            <button type="submit" class="btn btn-primary">Update</button>#}
+
+         <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{% url 'phpm_company_list' %}" class="btn btn-primary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

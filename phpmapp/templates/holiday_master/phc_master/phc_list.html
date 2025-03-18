@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">PHC Master</h5>
+        <div class="card-body">
+            <div class="text-start">
+                <a href="{% url 'phc_create' %}" class="btn btn-primary"><span class="tf-icons bx bx-list-plus"></span> Add</a>
+            </div>
+            <br/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Block Name</th>
+                        <th>PHC Code</th>
+                        <th>PHC Name</th>
+                        <th>Phone</th>
+                        <th>Mobile</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for phc in phc_list %}
+                        <tr>
+                            <td>
+                            {% for blk in block_data %}
+                            {%if phc.block_psk_id == blk.psk_id %}
+                                <option value="{{blk.psk_id}}">{{blk.block_code}}</option>
+                            {% endif %}
+                            {% endfor %}
+                            </td>
+                            <td>{{ phc.phc_code }}</td>
+                            <td>{{ phc.phc_name }}</td>
+                            <td>{{ phc.phc_phone }}</td>
+                            <td>{{ phc.phc_mobile }}</td>
+                            <td>
+                                {% if phc.active %}
+                                <span class="badge bg-label-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-label-danger">In Active</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'phc_update' phc.psk_id %}">
+                                    <button type="button" class="btn btn-primary btn-sm zoom-hover">
+                                        <i class="bx bxs-edit bx-sm"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Delete Button triggers the modal -->
+                                <button type="button" class="btn btn-danger btn-sm zoom-hover" data-bs-toggle="modal" data-bs-target="#modalToggleDelete{{ phc.psk_id }}">
+                                    <i class="bx bxs-trash bx-sm"></i>
+                                </button>
+
+
+
+                                <div class="modal fade" id="modalToggleDelete{{ phc.psk_id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this phc?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- Delete button in modal, redirects to the phc_delete URL -->
+                                                <a href="{% url 'phc_delete' phc.psk_id %}" class="btn btn-danger"><i class="bx bxs-trash"></i> Yes</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bx bx-x"></i> No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+
+<!-- Card for the Form -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Course</h5>
+    </div>
+    <div class="card-body">
+        <!-- Unified Update Form -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Data Fields -->
+
+
+
+                <div class="mb-3 col-md-4">
+                    <label for="course_code" class="form-label"> Course Code </label>
+                    <input type="text" class="form-control" id="course_code" name="course_code" value="{{ object.course_code }}" readonly >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="course_name" class="form-label"> Course Name </label>
+                    <input type="text" class="form-control" id="course_name" name="course_name" value="{{ object.course_name }}" required >
+                </div>
+
+                <div class="mb-3 col-md-4">
+                    <label for="course_duration" class="form-label"> Course Duration </label>
+                    <input type="text" class="form-control" id="course_duration" name="course_duration" value="{{ object.course_duration }}" required >
+                </div>
+
+
+               <div class="mb-3 col-md-4">
+                  <label for="course_name" class="form-label"> Course Type </label>
+                  <select class="form-select color-dropdown" data-allow-clear="true" id="course_type" name="course_type" required>
+                    <option value="">-- Select --</option>
+                    <option value="Nursing" {% if object.course_type == 'Nursing' %}selected{% endif %}>Nursing</option>
+                    <option value="ANM" {% if object.course_type == 'ANM' %}selected{% endif %}>ANM</option>
+                    <option value="MBBS" {% if object.course_type == 'MBBS' %}selected{% endif %}>MBBS</option>
+                    <option value="MPHW(M)" {% if object.course_type == 'MPHW(M)' %}selected{% endif %}>MPHW(M)</option>
+                    <option value="DGMN" {% if object.course_type == 'DGMN' %}selected{% endif %}>DGMN</option>
+                  </select>
+                </div>
+
+
+
+
+              <div class="col-md-4">
+                    <br/>
+                    <div class="form-check form-switch mb-2">
+                        <!-- Ensure 'checked' is added when district.active is True -->
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="active" {% if object.active %}checked{% endif %}> Active
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+            <!-- Update Button -->
+{#            <button type="submit" class="btn btn-primary">Update</button>#}
+
+
+         <div class="col-12 text-end">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{% url 'phpm_course_list' %}" class="btn btn-primary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

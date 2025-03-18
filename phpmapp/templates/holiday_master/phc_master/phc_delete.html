@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">Delete PHC</h5>
+        <div class="card-body">
+            <p>Are you sure you want to delete the PHC <strong>{{ phc.phc_name }}</strong>?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="{% url 'phc_list_Master' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

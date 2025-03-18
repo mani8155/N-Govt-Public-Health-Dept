@@ -1,0 +1,409 @@
+
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+   <!-- Vertical Icons Wizard -->
+   <div class="col-12 mb-6">
+    <small class="text-light fw-medium">MBBS Application Detail</small>
+    <div class="bs-stepper wizard-vertical vertical wizard-vertical-icons-example mt-2">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#account-details-vertical">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+              <i class="bx bx-detail"></i>
+            </span>
+            <span class="bs-stepper-label">
+              <span class="bs-stepper-title">Applicant Detail</span>
+              <span class="bs-stepper-subtitle">Basic Details of Applicant  </span>
+            </span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#personal-info-vertical">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+              <i class="bx bx-user"></i>
+            </span>
+            <span class="bs-stepper-label">
+              <span class="bs-stepper-title">Assign IO</span>
+              <span class="bs-stepper-subtitle">Assign Inspection Officer</span>
+            </span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#inspection-links-vertical">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+              <i class="bx bx-camera"></i>
+            </span>
+            <span class="bs-stepper-label">
+              <span class="bs-stepper-title">Inspection Done</span>
+              <span class="bs-stepper-subtitle">Inspection Officer Visit Done</span>
+            </span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#verify-links-vertical">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+              <i class='bx bx-question-mark'></i>
+            </span>
+            <span class="bs-stepper-label">
+              <span class="bs-stepper-title">Verify Inspection</span>
+              <span class="bs-stepper-subtitle">Verify Inspection Details</span>
+            </span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#approval-links-vertical">
+          <button type="button" class="step-trigger">
+            <span class="bs-stepper-circle">
+              <i class="bx bx-message-rounded-check"></i>
+            </span>
+            <span class="bs-stepper-label">
+              <span class="bs-stepper-title">Approved</span>
+              <span class="bs-stepper-subtitle">Approved From HUD</span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="bs-stepper-content">
+        <!-- <form method="post" action="#">
+            {% csrf_token %} -->
+          <!-- Account Details -->
+          <div id="account-details-vertical" class="content">
+            <div class="content-header mb-4">
+              <h6 class="mb-0">Applicant Detail</h6>
+              <small>View Institute Detail</small>
+            </div>
+            <form method="POST" action="#">
+              {% csrf_token %}
+              <div class="row g-6">
+                  <div class="col-md-6">
+                      <div class="row">
+                        <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Document Id</label>
+                        <div class="col-sm-7">
+                          <input type="text" id="document_id" name="document_id" class="form-control" placeholder="Enter Document Id">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="row">
+                        <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Document Date</label>
+                        <div class="col-sm-7">
+                          <input type="date" id="document_date" name="document_date" class="form-control" placeholder="Enter Document Date">
+                        </div>
+                      </div>
+                  </div>         
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Proforma Application Id </label>
+                    <div class="col-sm-7">
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="proforma_psk_id" name="proforma_psk_id" >
+                        <option value="">-- Select --</option>  
+                        <option value="Yes">PHD202501170141</option>  
+                        <option value="No">PHD202501170142</option>
+                        </select>
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Application Date</label>
+                    <div class="col-sm-7">
+                      <input type="date" id="proforma_document_date" name="proforma_document_date" class="form-control" placeholder="Enter Applicant Doc/Date">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Institution Name</label>
+                    <div class="col-sm-7">
+                      <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Enter Institution Name">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Institution Type</label>
+                    <div class="col-sm-7">
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="Institution_type" name="Institution_type" >
+                          <option value="">-- Select --</option>  
+                          <option value="1">Nursing</option>  
+                          <option value="2">ANM</option>
+                          <option value="3">MPHW</option>
+                          </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Instittue Address</label>
+                    <div class="col-sm-7">
+                      <textarea id="institute_address" name="institute_address" class="form-control" placeholder="Enter Institution Address"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">District</label>
+                    <div class="col-sm-7">
+                      <!-- <input type="text" id="institute_district" name="institute_district" class="form-control" placeholder="Enter District"> -->
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="institute_district" name="institute_district" >
+                        <option value="">-- Select --</option>  
+                        <option value="1">Chennai</option>  
+                        <option value="2">Kanchipuram</option>
+                        <option value="3">Tiruvallur</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Contact No</label>
+                    <div class="col-sm-7">
+                      <input type="text" id="institute_contact_no" name="institute_contact_no" class="form-control" placeholder="Enter Contact No">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Email Id</label>
+                    <div class="col-sm-7">
+                      <input type="text" id="institute_emailid" name="institute_emailid" class="form-control" placeholder="Enter Email Id">
+                    </div>
+                  </div>
+                </div>        
+      
+              </div>
+              <div class="row mt-6">
+                <div class="col-md-6">
+                  <div class="row justify-content-end">
+                    <div class="col-sm-9">
+                      <button type="submit" class="btn btn-primary me-3">Approved</button>
+                      <button type="reset" class="btn btn-danger">Rejected</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Assign to IO Info -->
+          <div id="personal-info-vertical" class="content">
+            <div class="content-header mb-4">
+              <h6 class="mb-0">Inspection Officer </h6>
+              <small>Enter Your Inspection Officer Details</small>
+            </div>
+            <form class="source-item" method="POST" action="#">
+              {% csrf_token %}
+              <div class="mb-4" data-repeater-list="group-a">
+                <div class="repeater-wrapper pt-0 pt-md-9" data-repeater-item>
+                  <div class="d-flex border rounded position-relative pe-0">
+                    <div class="row w-100 p-6 g-6">
+                      <div class="col-md-3 col-12 mb-md-0 mb-4">
+                        <p class="h6 repeater-title">Inspection officer</p>
+                        <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="inspection_officer_name_psk_id" name="inspection_officer_name_psk_id" >
+                          <option value="">-- Select --</option>  
+                          <option value="1">Raguram</option>  
+                          <option value="2">Anandraj</option>
+                          <option value="3">Ravi Kumar</option>
+                          </select>
+                      </div>
+                      <div class="col-md-3 col-12 mb-md-0 mb-4">
+                        <p class="h6 repeater-title">Designation</p>
+                        <input type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
+                      </div>
+                      <div class="col-md-3 col-12 mb-md-0 mb-4">
+                        <p class="h6 repeater-title">District Name</p>
+                        <!-- <input type="text" id="district_name" name="district_name" class="form-control" placeholder="Enter District Name"> -->
+                        <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="district_name" name="district_name" >
+                          <option value="">-- Select --</option>  
+                          <option value="1">Chennai</option>  
+                          <option value="2">Kanchipuram</option>
+                          <option value="3">Tiruvallur</option>
+                          </select>
+                      </div>
+                      <div class="col-md-2 col-12 mb-md-0 mb-4">
+                        <p class="h6 repeater-title">Selected</p>
+                        <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="selection_type" name="selection_type" >
+                          <option value="">-- Select --</option>  
+                          <option value="1">Selected</option>  
+                          <option value="0">Not Selected</option>
+                        </select>
+                      </div>
+                      <div class="col-md-1 col-12 mb-md-0 mb-4">
+                          <p class="h6 repeater-title" style="visibility:hidden;">No of </p>
+                        <button type="submit" class="btn btn-sm btn-primary">
+                          Add
+                        </button>
+                    </div>
+                  </div>
+                    <div
+                      class="d-flex flex-column align-items-center justify-content-between border-start p-2">
+                      <i class="bx bx-x bx-lg cursor-pointer" data-repeater-delete></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <button type="button" class="btn btn-sm btn-primary" data-repeater-create>
+                    <i class="bx bx-plus bx-xs me-1_5"></i>Add Item
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Inspection Links -->
+          <div id="inspection-links-vertical" class="content">
+            <div class="content-header mb-4">
+              <h6 class="mb-0">Social Links</h6>
+              <small>Enter Your Social Links.</small>
+            </div>
+            <div class="row g-6">
+              <div class="col-sm-6">
+                <label class="form-label" for="twitter1">Twitter</label>
+                <input
+                  type="text"
+                  id="twitter1"
+                  class="form-control"
+                  placeholder="https://twitter.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="facebook1">Facebook</label>
+                <input
+                  type="text"
+                  id="facebook1"
+                  class="form-control"
+                  placeholder="https://facebook.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="google1">Google+</label>
+                <input
+                  type="text"
+                  id="google1"
+                  class="form-control"
+                  placeholder="https://plus.google.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="linkedin1">Linkedin</label>
+                <input
+                  type="text"
+                  id="linkedin1"
+                  class="form-control"
+                  placeholder="https://linkedin.com/abc" />
+              </div>
+              <div class="col-12 d-flex justify-content-between">
+                <button class="btn btn-primary btn-prev">
+                  <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-success btn-submit">Submit</button>
+              </div>
+            </div>
+          </div>
+          <!--- Verify Details-->
+          <div id="verify-links-vertical" class="content">
+            <div class="content-header mb-4">
+              <h6 class="mb-0">Approved</h6>
+              <small>Approved Letter From DHO</small>
+            </div>
+            <div class="row g-6">
+              <div class="col-sm-6">
+                <label class="form-label" for="twitter1">Twitter</label>
+                <input
+                  type="text"
+                  id="twitter1"
+                  class="form-control"
+                  placeholder="https://twitter.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="facebook1">Facebook</label>
+                <input
+                  type="text"
+                  id="facebook1"
+                  class="form-control"
+                  placeholder="https://facebook.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="google1">Google+</label>
+                <input
+                  type="text"
+                  id="google1"
+                  class="form-control"
+                  placeholder="https://plus.google.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="linkedin1">Linkedin</label>
+                <input
+                  type="text"
+                  id="linkedin1"
+                  class="form-control"
+                  placeholder="https://linkedin.com/abc" />
+              </div>
+              <div class="col-12 d-flex justify-content-between">
+                <button class="btn btn-primary btn-prev">
+                  <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-success btn-submit">Submit</button>
+              </div>
+            </div>
+          </div>
+           <!-- Approval Links -->
+           <div id="approval-links-vertical" class="content">
+            <div class="content-header mb-4">
+              <h6 class="mb-0">Approved</h6>
+              <small>Approved Letter From DHO</small>
+            </div>
+            <div class="row g-6">
+              <div class="col-sm-6">
+                <label class="form-label" for="twitter1">Twitter</label>
+                <input
+                  type="text"
+                  id="twitter1"
+                  class="form-control"
+                  placeholder="https://twitter.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="facebook1">Facebook</label>
+                <input
+                  type="text"
+                  id="facebook1"
+                  class="form-control"
+                  placeholder="https://facebook.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="google1">Google+</label>
+                <input
+                  type="text"
+                  id="google1"
+                  class="form-control"
+                  placeholder="https://plus.google.com/abc" />
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label" for="linkedin1">Linkedin</label>
+                <input
+                  type="text"
+                  id="linkedin1"
+                  class="form-control"
+                  placeholder="https://linkedin.com/abc" />
+              </div>
+              <div class="col-12 d-flex justify-content-between">
+                <button class="btn btn-primary btn-prev">
+                  <i class="bx bx-left-arrow-alt bx-sm ms-sm-n2 me-sm-2"></i>
+                  <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                </button>
+                <button class="btn btn-success btn-submit">Submit</button>
+              </div>
+            </div>
+          </div>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+  <!-- /Vertical Icons Wizard -->
+
+
+{% endblock content %} 

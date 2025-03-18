@@ -1,0 +1,211 @@
+
+
+
+{% extends 'phdbase.html' %}
+{% load static %}
+{% block content %}
+
+  <h6>Institution Profile</h6>
+
+<div class="card">
+    <div class="card-body" >
+        <form id="institutionForm" class="row g-6 fv-plugins-bootstrap5 fv-plugins-framework" action="#" method="POST" data-select2-id="formValidationExamples" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+                <!-- Institution Name -->
+            <div class="col-md-6 fv-plugins-icon-container">
+                <label class="form-label" for="institution_name">Institution Name</label>
+                <input class="form-control" type="text" value="{{ obj.institution_name }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+
+            <!-- Institution Trust Name -->
+            <div class="col-md-6 fv-plugins-icon-container">
+                <label class="form-label" for="institution_trust_name">Trust Name</label>
+                <input type="text" class="form-control" id="institution_trust_name" name="institution_trust_name" value="{{ obj.institution_trust_name }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+
+            <!-- Institution Address -->
+            <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_address">Institution Address</label>
+              <textarea class="form-control" readonly>{{ obj.institution_address_text }}</textarea>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+                   <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_distirict_psk_id">District</label>
+                <input type="text" class="form-control" id="institution_distirict_psk_id" name="institution_distirict_psk_id" value="{{ district.district_name }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+
+            <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_distirict_psk_id">HUD</label>
+                <input type="text" class="form-control"  name="hud" value="{{ hud.hud_name }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+                        <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_distirict_psk_id">Block</label>
+                <input type="text" class="form-control" name="block" value="{{ block_obj.block_name }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+
+
+               <!-- Institution Pincode -->
+            <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_pincode">Pin Code</label>
+                <input type="text" class="form-control" id="institution_pincode" name="institution_pincode" value="{{ obj.institution_pincode }}" readonly>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+
+<hr>
+
+
+            <div class="mt-2">
+          <h6>Contact Details</h6>
+{#           <a class="btn btn-sm rounded-pill btn-icon btn-outline-primary mb-1" data-bs-toggle="modal" data-bs-target="#basicModal">#}
+{#                     <span class="icon-base bx bx-plus icon-20px"></span>#}
+{#                 </a>#}
+          <div></div></div>
+
+
+
+            <div class="row">
+  <div class="col-lg-3 col-sm-6">
+
+      {% for contact in contact_data %}
+
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <div class="card-info">
+              <p class="text-heading mb-1">{{ contact.contact_name}}</p>
+              <div class="d-flex align-items-center mb-1">
+              Type :   {{ contact.contact_type }}
+              </div>
+                 <div class="d-flex align-items-center mb-1">
+                <span class="text-success">Ph : {{ contact.contact_no }}</span>
+              </div>
+               <span class="text-info">Email :  {{ contact.contact_email }}</span>
+            </div>
+            <div class="card-icon">
+{#              <span class="badge bg-label-primary rounded p-2">#}
+{#                  <a href="#"><i class="icon-base bx bxs-edit icon-lg"></i></a>#}
+{##}
+{#              </span>#}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+                {% endfor %}
+
+</div>
+  <hr>
+
+
+
+
+
+{#            <div class="col-md-3 fv-plugins-icon-container">#}
+{#                <label for="text" class="form-label">Contact Name</label>#}
+{#                <input type="text" class="form-control" id="mobile" name="mobile"#}
+{#                       placeholder="Enter your contact name "/>#}
+{#                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="col-md-3 fv-plugins-icon-container">#}
+{#                <label for="text" class="form-label">Contact Mobile Number</label>#}
+{#                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter your contact No"/>#}
+{#                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="col-md-3 fv-plugins-icon-container">#}
+{#                <label for="text" class="form-label">Contact Email</label>#}
+{#                <input type="text" class="form-control" id="mobile" name="mobile"#}
+{#                       placeholder="Enter your contact email"/>#}
+{#                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
+{#            </div>#}
+{##}
+
+
+
+
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+{#                <button type="submit" name="submitButton" class="btn btn-primary">Register</button>#}
+
+            </div>
+
+            <input type="hidden">
+        </form>
+    </div>
+</div>
+
+
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalToggleLabel">Adding Your Contact Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+            <div class="modal-body">
+
+<form method="post" action="{% url 'contact_details' %}">
+    {% csrf_token %}
+
+                          <div class="row g-6">
+                                <div class="col mb-0">
+                        <label for="text" class="form-label">Contact Type</label>
+                        <select class="form-select" name="contact_type">
+                            <option value="Principal">Principal</option>
+                            <option value="A.O">A.O</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+
+                    <div class="col mb-0">
+                        <label for="emailBasic" class="form-label">Name</label>
+                        <input type="text" name="contact_name"  class="form-control" placeholder="Enter Name">
+                    </div>
+
+                </div>
+
+                <div class="row g-6">
+                    <div class="col mb-0">
+                        <label for="emailBasic" class="form-label">Email</label>
+                        <input type="email" id="emailBasic" class="form-control" name="contact_email" placeholder="abcd@gmail.com">
+                    </div>
+                    <div class="col mb-0">
+                        <label for="text" class="form-label">Ph No</label>
+                     <input type="text" name="contact_no"  class="form-control" placeholder="Enter Phone Numver">
+                    </div>
+                </div>
+                      </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        No
+                    </button>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

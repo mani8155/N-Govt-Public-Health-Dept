@@ -1,0 +1,404 @@
+<!doctype html>
+{% load static %}
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="assets/"
+  data-template="vertical-menu-template-no-customizer"
+  data-style="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+      <link rel="icon" type="image/x-icon" href="{{ favicon_logo }}" />
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+     <!-- Icons -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icons.css' %}" />
+ 
+     <!-- Core CSS -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/core.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/theme-default.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+ 
+     <!-- Vendors CSS -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/typeahead-js/typeahead.css' %}" />
+ 
+     <!-- Page CSS -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/pages/page-faq.css' %}" />
+ 
+     <!-- Helpers -->
+     <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
+     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+     <script src="{% static 'assets/js/config.js' %}"></script>
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}"  />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/select2/select2.css'' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/tagify/tagify.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/flatpickr/flatpickr.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/libs/@form-validation/form-validation.css' %}" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{% static 'assets/js/config.js' %}"></script>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+              <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboards -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="Nursing College">Nursing College</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="nursingproforma.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Proforma">Proforma</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="mandatorydocnursing.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Documents">Documents</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="DGNM">DGNM</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="dgnmproforma.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Proforma">Proforma</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="mandatorydocdgnm.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Documents">Documents</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="Medical College">Medical College</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="medicalproforma.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Proforma">Proforma</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="mandatorydocmedical.html" class="menu-link">
+                    <div class="text-truncate" data-i18n="Documents">Documents</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="bx bx-menu bx-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center">
+                <div class="nav-item navbar-search-wrapper mb-0">
+                  <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
+                    <i class="bx bx-search bx-md"></i>
+                    <span class="d-none d-md-inline-block text-muted fw-normal ms-4">Search (Ctrl+/)</span>
+                  </a>
+                </div>
+              </div>
+              <!-- /Search -->
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+                             
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img src="{%static 'assets/img/avatars/1.png' %}" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img src="assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">John Doe</h6>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-profile-user.html">
+                        <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <i class="bx bx-cog bx-md me-3"></i><span>Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+
+            <!-- Search Small Screens -->
+            <div class="navbar-search-wrapper search-input-wrapper d-none">
+              <input
+                type="text"
+                class="form-control search-input container-xxl border-0"
+                placeholder="Search..."
+                aria-label="Search..." />
+              <i class="bx bx-x bx-md search-toggler cursor-pointer"></i>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="container-fluid flex-grow-1 container-p-y">
+            <div class="row mb-6">
+            
+            <div class="col-md">
+              <div class="card">
+                <h5 class="card-header">Nursing Proforma</h5>
+                <div class="card-body">
+                  <form method="post" action="#" enctype="multipart/form-data">
+                    <div class="row g-6">
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-first-name">Copy of G.O in which the institution was permitted to start Para Medical Course</label><br>
+                          <label class="form-label" for="formtabs-first-name"></label>(to be enclosed)</label>
+                        <input type="file" id="goform" name="goform" class="form-control" placeholder="upload GO file">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">Whether the students of the institution were already permitted for</label> 
+                          <label class="form-label" for="formtabs-last-name">the practical training in PHC or Government Hospital. If so copies enclosed.</label>
+                        
+                        <input type="file" id="filecopy" name="filecopy" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">In case of Diploma and Degree Nursing students, whether Tamil Nadu Nurses and Midwives Council and</label> 
+                         <label class="form-label" for="formtabs-last-name">has granted recognition to the institution to conduct Diploma / Degree in Nursing course (Evidence Produced).</label>
+                        
+                        <input type="file" id="filecopy1" name="filecopy1" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">In case of Degree .course, whether continuance of provisional affiliation  </label> 
+                        <label class="form-label" for="formtabs-last-name">has been granted by the Tamil Nadu  MGR Medical University (evidence to produced)</label>                        
+                        <input type="file" id="filecopy2" name="filecopy2" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">The number of students to be
+                          deputed for training proposed and their year of study  </label> 
+                        <label class="form-label" for="formtabs-last-name"> (indicate I year, II year, III year, I Semester, II Semester or III Semester etc., of the course.)</label>                        
+                        <input type="file" id="filecopy3" name="filecopy3" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training  </label> 
+                        <label class="form-label" for="formtabs-last-name"> in PHC or Government Hospital during the Academic Year of study. The duration of prqposed training period ( No. of days / No. of weeks / No of months) to be indicated by the
+                          institution specifically
+                          </label>                        
+                        <input type="file" id="filecopy4" name="filecopy4" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">The Academic year of study during which he students will be deputed to  </label> 
+                        <label class="form-label" for="formtabs-last-name">avail clinical facilities at PHC or Government Hospital to be indicated. 
+                          </label>                        
+                        <input type="file" id="filecopy5" name="filecopy5" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">Whether the feasibility report from the Deputy Director of Health Services / Joint Director of Health Services </label> 
+                        <label class="form-label" for="formtabs-last-name">to impart training to the Para Medical students has been obtained? The report 
+                          </label>                        
+                        <input type="file" id="filecopy6" name="filecopy6" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">Whether the Management is willing to pay the fees prescribed by the Government</label> 
+                        <label class="form-label" for="formtabs-last-name">to impart training to their Para Medical students. </label>   
+                                              
+                        <input type="file" id="filecopy7" name="filecopy7" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="formtabs-last-name">In case, whether the students were already permitted to avail facilities in PHC or Government ·Hospitals more than </label> 
+                        <label class="form-label" for="formtabs-last-name">2 years for Diploma Course and more than 3 years for Degree courses,.whether the institution is willing to remit the double the rate of fee structure to each students for continuance of permission.</label>   
+                                              
+                        <input type="file" id="filecopy8" name="filecopy8" class="form-control" placeholder="Upload File Copy">
+                      </div>
+                    </div>
+                    <div class="pt-6">
+                      <button type="submit" class="btn btn-primary me-4">Submit</button>
+                      <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div
+                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                  <div class="text-body">
+                    ©
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                    , made with ❤️ by
+                    <a href="https://themeselection.com" target="_blank" class="footer-link">ThemeSelection</a>
+                  </div>
+                  <div class="d-none d-lg-inline-block">
+                    <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                    <a
+                      href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation/"
+                      target="_blank"
+                      class="footer-link me-4"
+                      >Documentation</a
+                    >
+
+                    <a
+                      href="https://themeselection.com/support/"
+                      target="_blank"
+                      class="footer-link d-none d-sm-inline-block"
+                      >Support</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+
+      <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+      <div class="drag-target"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/hammer/hammer.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/i18n/i18n.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/typeahead-js/typeahead.js' %}"></script>
+    <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="{% static 'assets/vendor/libs/cleavejs/cleave.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/cleavejs/cleave-phone.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/select2/select2.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/tagify/tagify.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/flatpickr/flatpickr.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/@form-validation/popular.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/@form-validation/bootstrap5.js' %}"></script>
+    <script src="{% static 'assets/vendor/libs/@form-validation/auto-focus.js' %}"></script>
+
+    <!-- Main JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Page JS -->
+
+    <script src="{% static 'assets/js/wizard-ex-property-listing.js' %}"></script>
+  </body>
+</html>

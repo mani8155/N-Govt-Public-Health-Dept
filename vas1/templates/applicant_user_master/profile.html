@@ -1,0 +1,106 @@
+
+{% extends 'phdbase.html' %}
+{% load static %} 
+{% block content %}
+
+
+            <!-- Content -->
+            
+              <div class="card" data-select2-id="7">
+                <h5 class="card-header"></h5>
+                <div class="card-body" data-select2-id="6">
+
+                      <div class="d-flex align-items-start align-items-sm-center gap-6 pb-4 border-bottom">
+                        {% if applicant_photo %}
+                            <img src="{{ applicant_photo }}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded"
+                                 id="uploadedAvatar">
+                        {% else %}
+                            <img src="{% static 'assets/img/avatars/default.png' %}" alt="user-avatar" class="d-block w-px-100 h-px-100 rounded"
+                                 id="uploadedAvatar">
+                        {% endif %}
+                        <div class="button-wrapper">
+              <a class="btn btn-icon btn-sm btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#modalToggle">
+                                <i class="bx bxs-edit"></i>
+                            </a>
+
+              <div>Allowed JPG,PNG</div>
+            </div>
+          </div>
+
+
+                  <form id="profileupdate" class="row g-6 fv-plugins-bootstrap5 fv-plugins-framework" action="#" method="POST" data-select2-id="formValidationExamples" enctype="multipart/form-data">
+                    <!-- Account Details -->
+                    {% csrf_token %}
+
+                      <h6> Applicant Detail</h6>
+
+
+                    <div class="col-md-3 fv-plugins-icon-container">
+                      <label class="form-label" for="formValidationName">First Name</label>
+                      <input type="text" id="firstname" class="form-control" placeholder="Enter First Name" name="firstname"
+                      value="{{ obj.firstname }}">
+                      <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                      </div>
+                    </div>
+                    <div class="col-md-3 fv-plugins-icon-container">
+                      <label class="form-label" for="formValidationEmail">Last Name</label>
+                      <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Enter Last Name"
+                       value="{{ obj.lastname }}">
+                      <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                      </div>
+                    </div>
+                    <div class="col-md-3 fv-plugins-icon-container">
+                      <label class="form-label" for="formValidationEmail">User Name</label>
+                      <input class="form-control" type="text" id="username" name="username" placeholder="Enter User Name"  value="{{ obj.username }}" readonly>
+                      <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 fv-plugins-icon-container">
+                      <label class="form-label" for="formValidationEmail">Email Address</label>
+                      <input class="form-control" type="email" id="email_address" name="email_address" placeholder="Enter Email Address"
+                       value="{{ obj.email }}" >
+                      <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
+                      </div>
+                    </div>
+
+                    
+                    <div class="col-12 fv-plugins-icon-container">
+                    <div class="col-12">
+                      <button type="submit"  class="btn btn-primary">Update</button>
+
+                    </div>
+                  <input type="hidden"></form>
+                </div>
+              </div>
+          
+            <!--/ Content -->
+
+
+    <div class="modal fade" id="modalToggle" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalToggleLabel">Picture</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'applicant_profile_pic_update' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="upload_photo" class="form-label">Photo Upload</label>
+                        <input accept=".jpeg,.jpg,.png" class="form-control" id="upload_photo" name="upload_photo" type="file">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+

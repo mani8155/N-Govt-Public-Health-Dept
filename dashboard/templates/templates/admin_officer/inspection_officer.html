@@ -1,0 +1,111 @@
+
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+  <!-- Include jQuery and DataTables CSS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <a href="admin_dashboard"><button type="button" class="btn btn-primary">Back </button></a>
+  <br><br>
+<div class="col-12 mb-6">
+    <div class="card">
+      <div class="card-widget-separator-wrapper">
+        <div class="card-body card-widget-separator">
+          <div class="row gy-4 gy-sm-1">
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex justify-content-between align-items-center card-widget-1 border-end pb-4 pb-sm-0">
+                <div>
+                  <h4 class="mb-0">100</h4>
+                  <p class="mb-0">Overall</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-danger text-heading">
+                    <i class='bx bx-user bx-26px'></i>
+                  </span>
+                </div>
+              </div>
+              <hr class="d-none d-sm-block d-lg-none me-6">
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex justify-content-between align-items-center card-widget-2 border-end pb-4 pb-sm-0">
+                <div>
+                  <h4 class="mb-0">75</h4>
+                  <p class="mb-0"> Assign</p>
+                </div>
+                <div class="avatar me-lg-6">
+                  <span class="avatar-initial rounded bg-label-danger text-heading">
+                    <i class='bx bx-user bx-26px'></i>
+                  </span>
+                </div>
+              </div>
+              <hr class="d-none d-sm-block d-lg-none">
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+                <div>
+                  <h4 class="mb-0">25</h4>
+                  <p class="mb-0">Non Assign </p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-danger text-heading">
+                    <i class='bx bx-user bx-26px'></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="card">  
+  <h5 class="card-header pb-0 text-md-start text-center">Inspection Officers List</h5>
+  <br>
+  <div class="card-datatable text-nowrap">
+    <table class="datatables-ajax table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name </th>
+          <th>Email Id</th>
+          <th>Phone No</th>
+          <th> District</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="showadmin_users">
+        <tr>
+          <td>1</td>
+          <td>Hariharan</td>
+          <td>hariharanio@phd.co.in</td>
+          <td>9944152422</td>
+          <td>Vellore</td>
+          <td><a class="btn btn-sm btn-primary" href="#">View</a></td>
+        </tr>
+        <!-- Add more rows here as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Include DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.datatables-ajax').DataTable({
+      "pageLength": 15,
+      "lengthMenu": [  
+        [10, 25, 50, 100], 
+        ['10', '25', '50', '100']
+      ],
+      "pagingType": "simple_numbers", 
+    });
+   
+  });
+</script>
+{% endblock content %}
+</body>
+</html>

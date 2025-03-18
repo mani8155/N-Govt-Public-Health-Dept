@@ -1,0 +1,347 @@
+<!doctype html>
+{% load static %}
+<html
+  lang="en"
+  class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="{% static 'assets/' %}"
+  data-template="vertical-menu-template"
+  data-style="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+        <title>{{ favicon_caption}}</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ favicon_logo }}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icons.css' %}" />
+
+    <!-- Core CSS -->
+      <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/core.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/theme-default.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/demo.css ' %}" />
+
+     <!-- Vendors CSS -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/typeahead-js/typeahead.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/select2/select2.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/flatpickr/flatpickr.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+
+     <!-- Page CSS -->
+
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/pages/app-invoice.css' %}" />
+
+     <!-- Helpers -->
+     <script src="{% static 'assets/vendor/js/helpers.js'%}"></script>
+     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+     <script src="{% static 'assets/js/config.js'%}"></script>
+      <style>
+          #template-customizer {
+              display: none !important; /* Ensures it's not visible */
+          }
+
+          input[readonly], textarea[readonly] {
+              background-color: #e9ecef !important;
+              opacity: 1;
+          }
+
+      </style>
+
+
+
+{#    <div class="nav-align-top py-5">#}
+{#        <ul class="nav nav-pills flex-column flex-md-row mb-6 row-gap-2 flex-wrap">#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link active" href="{% url 'registerpage' %}"><i class="icon-base bx bx-lock icon-18px me-1_5"></i>Register Form</a>#}
+{#          </li>#}
+{#              <li class="nav-item">#}
+{#            <a class="nav-link" href="{% url 'contact_details' 1 %}"><i class="icon-base bx bx-user icon-18px me-1_5"></i>Contact</a>#}
+{#          </li>#}
+{##}
+{#        </ul>#}
+{#      </div>#}
+
+
+      <!-- /Left Text -->
+
+
+
+<div class="card py-5" data-select2-id="7">
+
+        <h3 class="card-header">Public Health Department</h3>
+    <div class="card-body" data-select2-id="6">
+        <form id="institutionForm" class="row g-6 fv-plugins-bootstrap5 fv-plugins-framework" action="#" method="POST" data-select2-id="formValidationExamples" enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+                <!-- Institution Name -->
+             <div class="col-md-3 fv-plugins-icon-container">
+                <label class="form-label" for="institution_name">Institution Name<span class="text-danger fs-4">*</span></label>
+
+                 <a href="" class="btn btn-sm rounded-pill btn-icon btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#basicModal">
+                     <span class="icon-base bx bx-plus icon-20px"></span>
+                 </a>
+                  <select name="institution_name" class="selectpicker w-100" data-style="btn-default" data-live-search="true" tabindex="null" placeholder="Select Institution" required onchange="institutionDetails(this)">
+{#                  <option selected="" value="" disabled>-------Select--------</option>#}
+                      {% for institution_obj in institution_data %}
+                          <option value="{{ institution_obj.psk_id }}">{{ institution_obj.institution_name}}</option>
+                      {% endfor %}
+                </select>
+
+            </div>
+
+   <!-- Institution Trust Name -->
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_trust_name">Institution Trust Name</label>
+    <input type="text" class="form-control" id="institution_trust_name" name="institution_trust_name" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<!-- Institution Address -->
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_address">Institution Address</label>
+    <textarea class="form-control" id="institution_address" name="institution_address" readonly></textarea>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_distirict">District</label>
+    <input type="text" class="form-control" id="institution_distirict" name="institution_distirict" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_hud">HUD</label>
+    <input type="text" class="form-control" id="institution_hud" name="hud" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_block">Block</label>
+    <input type="text" class="form-control" id="institution_block" name="block" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<!-- Institution Pincode -->
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="institution_pincode">Pin Code</label>
+    <input type="text" class="form-control" id="institution_pincode" name="institution_pincode" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="principal_name">Principal Name</label>
+    <input type="text" class="form-control" id="principal_name" name="principal_name" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="principal_mobile">Principal Mobile Number</label>
+    <input type="text" class="form-control" id="principal_mobile" name="principal_mobile" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+<div class="col-md-3 fv-plugins-icon-container">
+    <label class="form-label" for="principal_email">Principal Email</label>
+    <input type="text" class="form-control" id="principal_email" name="principal_email" readonly>
+    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+</div>
+
+
+
+{#            <div class="col-md-3 fv-plugins-icon-container">#}
+{#                <label for="username" class="form-label">Username</label>#}
+{#                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required/>#}
+{#                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>#}
+{#            </div>#}
+
+
+
+                       <div class="col-md-3 fv-plugins-icon-container">
+               <label for="email" class="form-label">Username / Email<span class="text-danger fs-4">*</span></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required />
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-email"></div>
+            </div>
+
+
+                       <div class="col-md-3 fv-plugins-icon-container">
+               <label for="text" class="form-label">Mobile Number<span class="text-danger fs-4">*</span></label>
+              <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter your Phone No" required />
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+                <div class="col-md-3 fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
+                      <div class="form-password-toggle">
+                        <label class="form-label" for="formValidationPass">Password<span class="text-danger fs-4">*</span></label>
+                        <div class="input-group input-group-merge has-validation">
+                          <input class="form-control" type="password" id="password" name="password" placeholder="············" aria-describedby="multicol-password2" required>
+                          <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
+                        </div><div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
+                      <div class="form-password-toggle">
+                        <label class="form-label" for="formValidationPass">Confirm Password<span class="text-danger fs-4">*</span></label>
+                        <div class="input-group input-group-merge has-validation">
+                          <input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="············" aria-describedby="multicol-password2" required>
+                          <span class="input-group-text cursor-pointer" id="multicol-password2"><i class="bx bx-hide"></i></span>
+                        </div><div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+{#                <button type="submit" name="submitButton" class="btn btn-primary">Register</button>#}
+                <button type="submit"class="btn btn-primary">Register</button>
+            </div>
+
+            <input type="hidden">
+        </form>
+    </div>
+</div>
+
+  <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalToggleLabel">Adding Your Institution</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want to add your institution?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                            No
+                                        </button>
+                                        <a href="{% url 'create_institution' %}" class="btn btn-success">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+
+  </div>
+
+ <div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                     class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade show">
+                    <div class="toast-header">
+                        <i class='bx bxs-error-alt'></i>&nbsp;
+                        <div class="me-auto fw-semibold">Error</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">{{ message }}</div>
+                </div>
+                {% elif message.tags == "success" %}
+                <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                     class="bs-toast toast toast-placement-ex m-2 bg-success top-0 end-0 fade show">
+                    <div class="toast-header">
+                        <i class='bx bx-list-check'></i>&nbsp;
+                        <div class="me-auto fw-semibold">Success</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">{{ message }}</div>
+                </div>
+                {% elif message.tags == "info" %}
+                <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                     class="bs-toast toast toast-placement-ex m-2 bg-info top-0 end-0 fade show">
+                    <div class="toast-header">
+                        <i class='bx bx-list-check'></i>&nbsp;
+                        <div class="me-auto fw-semibold">info</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">{{ message }}</div>
+                </div>
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+
+    </div>
+</div>
+
+
+<script>
+    function institutionDetails(element) {
+        let institutionVal = element.value;
+        $.ajax({
+            url: "{% url 'ajax_institution_data' %}",
+            data: {institutionVal: institutionVal},
+            success: function (data) {
+                document.getElementById('institution_trust_name').value = data.trust_name;
+                document.getElementById('institution_address').value = data.address;
+                document.getElementById('institution_distirict').value = data.district;
+                document.getElementById('institution_hud').value = data.hud;
+                document.getElementById('institution_block').value = data.block;
+                document.getElementById('institution_pincode').value = data.pincode;
+                document.getElementById('principal_name').value = data.principal_name;
+                document.getElementById('principal_mobile').value = data.principal_no;
+                document.getElementById('principal_email').value = data.principal_email;
+            },
+
+            error: function (error) {
+                console.error("Error:", error);
+            }
+
+        });
+
+    }
+</script>
+
+
+<script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/hammer/hammer.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/i18n/i18n.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/typeahead-js/typeahead.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/select2/select2.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.js' %}"></script>
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+      <script src="{% static 'assets/vendor/libs/flatpickr/flatpickr.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/cleavejs/cleave.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/cleavejs/cleave-phone.js' %}"></script> -->
+        <script src="{% static 'assets/vendor/libs/jquery-repeater/jquery-repeater.js' %}"></script>
+
+        <!-- Main JS -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+        <!-- Page JS -->
+        <script src="{% static 'assets/js/offcanvas-send-invoice.js' %}"></script>
+        <script src="{% static 'assets/js/app-invoice-add.js' %}"></script>
+

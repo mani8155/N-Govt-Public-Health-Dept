@@ -1,0 +1,131 @@
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+<div class="col-md-12 col-xxl-4 mb-6">
+    <div class="card h-100">
+      <div class="d-flex align-items-end row">
+        <div class="col-7">
+          <div class="card-body">
+            <h5 class="card-title mb-1 text-nowrap">Welcome Back Raguram! 🎉</h5>
+            <p class="card-subtitle text-nowrap mb-3">DHO Dashboard</p>
+            
+            <a href="#" class="btn btn-sm btn-primary mb-1">View Details</a>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card-body pb-0 text-end">
+            <img src="{% static 'assets/img/illustrations/prize-light.png'%}" width="91" height="144" class="rounded-start" alt="View Sales">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-xxl-4">
+    <div class="row g-6">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-warning h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-warning"><i class="bx bx-hourglass bx-lg"></i></span>
+              </div>
+              <h4 class="mb-0">50</h4>
+            </div>
+            <p class="mb-2">Waiting Approval </p>
+            <p class="mb-0">
+              <a href="hud_mbbs_status" class="btn btn-primary btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-primary h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-message-square-check'></i></span>
+              </div>
+              <h4 class="mb-0">60</h4>
+            </div>
+            <p class="mb-2">Approved</p>
+            <p class="mb-0">
+              <a href="hud_nursing_status" class="btn btn-success btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-primary h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-primary"><i class='bx bx-lock-open'></i></span>
+              </div>
+              <h4 class="mb-0">42</h4>
+            </div>
+            <p class="mb-2">Inspection Pending</p>
+            <p class="mb-0">
+              <a href="hud_dgnm_status" class="btn btn-info btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-warning h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-warning"><i class="bx bx-hourglass bx-lg"></i></span>
+              </div>
+              <h4 class="mb-0">20</h4>
+            </div>
+            <p class="mb-2">Inspection Progress</p>
+            <p class="mb-0">
+              <a href="hud_anm_status" class="btn btn-warning btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-danger h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-danger"><i class='bx bxs-user-detail'></i></span>
+              </div>
+              <h4 class="mb-0">35</h4>
+            </div>
+            <p class="mb-2">IO Officers</p>
+            <p class="mb-0">
+              <a href="hud_mphw_status" class="btn btn-dark btn-sm rounded">View</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-danger h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-danger"><i class='bx bx-user-circle'></i></span>
+              </div>
+              <h4 class="mb-0">10</h4>
+            </div>
+            <p class="mb-2">HUD Officers</p>
+            <p class="mb-0">
+              <a href="hud_mphw_status" class="btn btn-danger btn-sm rounded">View</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
+
+

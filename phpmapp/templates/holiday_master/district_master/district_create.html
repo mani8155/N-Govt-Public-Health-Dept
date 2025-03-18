@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% load static %} 
+{% block content %}
+
+<!-- Content -->
+<div class="card" data-select2-id="7">
+    <h5 class="card-header">District/Directorate Master</h5>
+    <div class="card-body" data-select2-id="6">
+        <form id="profileupdate" class="row g-6 fv-plugins-bootstrap5 fv-plugins-framework" action="#" method="POST" data-select2-id="formValidationExamples">
+            <!-- Account Details -->
+            {% csrf_token %}
+            
+            <!-- District Code -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_code">District Code</label>
+                <input type="text" id="district_code" class="form-control" placeholder="Enter District Code" name="district_code" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- District Name -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_name">District Name</label>
+                <input class="form-control" type="text" id="district_name" name="district_name" placeholder="Enter District Name" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Address -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_address">Address</label>
+                <input class="form-control" type="text" id="district_address" name="district_address" placeholder="Enter Address" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Phone -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_phone">Phone</label>
+                <input class="form-control" type="text" id="district_phone" name="district_phone" placeholder="Enter Phone Number" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Fax -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_fax">Fax</label>
+                <input class="form-control" type="text" id="district_fax" name="district_fax" placeholder="Enter Fax Number" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Mobile -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_mobile">Mobile</label>
+                <input class="form-control" type="text" id="district_mobile" name="district_mobile" placeholder="Enter Mobile Number" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Contact Person -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="district_contact_person">Contact Person</label>
+                <input class="form-control" type="text" id="district_contact_person" name="district_contact_person" placeholder="Enter Contact Person" required>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+            <div class="col-md-2">
+                <br/>
+                <label class="switch switch-datk">
+                    <input type="checkbox" class="switch-input" name="active" checked />
+                    <span class="switch-toggle-slider">
+                        <span class="switch-on">
+                            <i class="bx bx-check"></i>
+                        </span>
+                        <span class="switch-off">
+                            <i class="bx bx-x"></i>
+                        </span>
+                    </span>
+                    <span class="switch-label">Active</span>
+                </label>
+            </div>
+
+            
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+                <button type="submit" name="submitButton" class="btn btn-primary">Save</button>
+                <a href="{% url 'district_list' %}" class="btn btn-md btn-primary">Cancel</a>
+            </div>
+
+            <input type="hidden">
+        </form>
+    </div>
+</div>
+
+<!--/ Content -->
+
+{% endblock content %}

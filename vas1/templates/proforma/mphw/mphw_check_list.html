@@ -1,0 +1,125 @@
+{% extends 'phdbase.html' %}
+{% load static %}
+{% block content %}
+
+    {% if application_obj.application_status == "Draft" %}
+        <h5 class="mt-2">Application / MPHW (M)/HI/SI Proforma Details / <span
+                class="badge bg-label-danger">{{ application_obj.application_status }}</span></h5>
+    {% else %}
+        <h5 class="mt-2">Application / MPHW (M)/HI/SI Proforma Details / <span
+                class="badge bg-label-success">{{ application_obj.application_status }}</span></h5>
+    {% endif %}
+
+    <div class="card mb-6">
+      <div class="card-header p-0 nav-align-top">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="{% url 'mphw_update' rec_parent_id %}">
+              Institute Details
+            </a>
+          </li>
+          <li class="nav-item" role="presentation">
+                <a class="nav-link" href="{% url 'mphw_student' rec_parent_id %}">
+              Student Details
+            </a>
+
+          </li>
+
+            <li>   <a class="nav-link" href="{% url 'mphw_phc_form' rec_parent_id %}">
+             PHC Details
+            </a></li>
+
+
+
+            <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">
+           Final Submission
+            </button>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="tab-content">
+
+          <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
+
+             <div class="card-body pt-0 px-0">
+
+    <form method="post">
+        {% csrf_token %}
+
+      <table class="table table-bordered table-sm mt-3">
+        <thead class="table-secondary thead-sm">
+            <tr>
+                <th class="text-center fw-bold">#</th>
+                <th class="text-center fw-bold">CheckList</th>
+                <th class="text-center fw-bold">G.O Number</th>
+                <th class="text-center fw-bold">G.O Date</th>
+                <th class="text-center fw-bold">PDF Uploaded</th>
+                <th class="text-center fw-bold">PDF Size</th>
+                <th class="text-center fw-bold">PDF Page Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, data in check_list_data.items %}
+                <tr>
+                    <td class="fw-bold"> <input class="form-check-input" type="checkbox" name="{{ key }}" id="{{ key }}" required></td>
+                    <td>{{ data.label }}</td>
+                    <td class="fw-bold">{{ data.go_number }}</td>
+                    <td class="fw-bold">
+                        {% if data.date %}
+                        {{ data.date }}
+                        {% else %}
+                            NA
+                        {% endif %}
+                    </td>
+                    <td class="fw-bold">
+                        {% if data.pdf_uploaded == "Yes" %}
+
+                        <span class="badge p-1_5 rounded-pill bg-label-success"><i class="icon-base icon-16px bx bx-check"></i></span>
+                        {% elif data.pdf_uploaded == "NA" %}
+                            {{ data.pdf_uploaded }}
+
+                            {% else %}
+                      <span class="badge p-1_5 rounded-pill bg-label-danger"><i class="icon-base icon-16px bx bx-x"></i></span>
+                        {% endif %}
+
+                    </td>
+
+                    <td class="fw-bold">{{ data.pdf_size }}</td>
+                    <td class="fw-bold">{{ data.pdf_page_count }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <div class="col-12 d-flex justify-content-between">
+        <a class="btn btn-label-secondary btn-prev" href="{% url 'mphw_phc_form' rec_parent_id %}">
+            <i class="icon-base bx bx-left-arrow-alt scaleX-n1-rtl icon-sm ms-sm-n2 me-sm-2"></i>
+            <span class="align-middle d-sm-inline-block d-none">Previous</span>
+        </a>
+
+        {% if application_obj.application_status == "Draft" %}
+            <button class="btn btn-success btn-submit" type="submit">Submit</button>
+        {% endif %}
+
+    </div>
+ </form>
+</div>
+
+
+          </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+{% endblock content %}

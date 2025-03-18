@@ -1,0 +1,201 @@
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+<h5 class="mt-6" style="text-align:center;">Assign Inspection Officer</h5>
+<div class="card mb-6">
+  <div class="card-header p-0 nav-align-top">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">
+          Institute & Application
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-account" role="tab" aria-selected="true">
+            Officer Details 
+        </button>
+     </li>
+    </ul>
+  </div>
+
+  <div class="tab-content">
+    <!-- Personal Info -->
+    <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
+      <form method="POST" action="#">
+        {% csrf_token %}
+        <div class="row g-6">
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Document Id</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="document_id" name="document_id" class="form-control" placeholder="Enter Document Id">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Document Date</label>
+                  <div class="col-sm-9">
+                    <input type="date" id="document_date" name="document_date" class="form-control" placeholder="Enter Document Date">
+                  </div>
+                </div>
+            </div>         
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-last-name">Proforma Application Id </label>
+              <div class="col-sm-8">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="proforma_psk_id" name="proforma_psk_id" >
+                  <option value="">-- Select --</option>  
+                  <option value="Yes">PHD202501170141</option>  
+                  <option value="No">PHD202501170142</option>
+                  </select>
+              </div>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Application Date</label>
+              <div class="col-sm-9">
+                <input type="date" id="proforma_document_date" name="proforma_document_date" class="form-control" placeholder="Enter Applicant Doc/Date">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Institution Name</label>
+              <div class="col-sm-9">
+                <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Enter Institution Name">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Institution Type</label>
+              <div class="col-sm-9">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="Institution_type" name="Institution_type" >
+                    <option value="">-- Select --</option>  
+                    <option value="1">Nursing</option>  
+                    <option value="2">ANM</option>
+                    <option value="3">MPHW</option>
+                    </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Instittue Address</label>
+              <div class="col-sm-9">
+                <textarea id="institute_address" name="institute_address" class="form-control" placeholder="Enter Institution Address"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">District</label>
+              <div class="col-sm-9">
+                <!-- <input type="text" id="institute_district" name="institute_district" class="form-control" placeholder="Enter District"> -->
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="institute_district" name="institute_district" >
+                  <option value="">-- Select --</option>  
+                  <option value="1">Chennai</option>  
+                  <option value="2">Kanchipuram</option>
+                  <option value="3">Tiruvallur</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Contact No</label>
+              <div class="col-sm-9">
+                <input type="text" id="institute_contact_no" name="institute_contact_no" class="form-control" placeholder="Enter Contact No">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Email Id</label>
+              <div class="col-sm-9">
+                <input type="text" id="institute_emailid" name="institute_emailid" class="form-control" placeholder="Enter Email Id">
+              </div>
+            </div>
+          </div>        
+
+        </div>
+        <div class="row mt-6">
+          <div class="col-md-6">
+            <div class="row justify-content-end">
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary me-3">Submit</button>
+                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Account Details -->
+    <div class="tab-pane fade" id="form-tabs-account" role="tabpanel">
+        <div class="card-body pt-0 px-0">
+          <form class="source-item" method="POST" action="#">
+            {% csrf_token %}
+            <div class="mb-4" data-repeater-list="group-a">
+              <div class="repeater-wrapper pt-0 pt-md-9" data-repeater-item>
+                <div class="d-flex border rounded position-relative pe-0">
+                  <div class="row w-100 p-6 g-6">
+                    <div class="col-md-3 col-12 mb-md-0 mb-4">
+                      <p class="h6 repeater-title">Inspection officer</p>
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="inspection_officer_name_psk_id" name="inspection_officer_name_psk_id" >
+                        <option value="">-- Select --</option>  
+                        <option value="1">Raguram</option>  
+                        <option value="2">Anandraj</option>
+                        <option value="3">Ravi Kumar</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-md-0 mb-4">
+                      <p class="h6 repeater-title">Designation</p>
+                      <input type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
+                    </div>
+                    <div class="col-md-3 col-12 mb-md-0 mb-4">
+                      <p class="h6 repeater-title">District Name</p>
+                      <!-- <input type="text" id="district_name" name="district_name" class="form-control" placeholder="Enter District Name"> -->
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="district_name" name="district_name" >
+                        <option value="">-- Select --</option>  
+                        <option value="1">Chennai</option>  
+                        <option value="2">Kanchipuram</option>
+                        <option value="3">Tiruvallur</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-md-0 mb-4">
+                      <p class="h6 repeater-title">Selected Inspector</p>
+                      <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="selection_type" name="selection_type" >
+                        <option value="">-- Select --</option>  
+                        <option value="1">Selected</option>  
+                        <option value="0">Not Selected</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex flex-column align-items-center justify-content-between border-start p-2">
+                    <i class="bx bx-x bx-lg cursor-pointer" data-repeater-delete></i>
+                   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <button type="button" class="btn btn-sm btn-primary" data-repeater-create>
+                  <i class="bx bx-plus bx-xs me-1_5"></i>Add Item
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

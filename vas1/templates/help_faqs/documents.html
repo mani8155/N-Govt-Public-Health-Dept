@@ -1,0 +1,321 @@
+
+{% extends 'phdbase.html' %}
+{% load static %} 
+{% block content %}
+
+
+            <!-- Content -->
+            
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row mt-6">
+                <!-- Navigation -->
+                <div class="col-lg-2 col-md-4 col-12 mb-md-0 mb-4">
+                  <div class="d-flex justify-content-between flex-column nav-align-left mb-2 mb-md-0">
+                    <ul class="nav nav-pills flex-column">
+                      <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payment">
+                          <i class="bx bx-credit-card faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Nursing Institute</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivery">
+                          <i class="bx bx-shopping-bag faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">ANM Institute</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancellation">
+                          <i class="bx bx-rotate-left faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Medical College</span>
+                        </button>
+                      </li>
+                      <!-- <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#orders">
+                          <i class="bx bx-cube faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">My Orders</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#product">
+                          <i class="bx bx-cog faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Product & Services</span>
+                        </button>
+                      </li> -->
+                    </ul>
+                    <div class="d-none d-md-block">
+                      <div class="my-4 d-flex justify-content-center">
+                        <img
+                          src="{% static 'assets/img/illustrations/sitting-girl-with-laptop.png' %}"
+                          class="img-fluid"
+                          width="240"
+                          alt="FAQ Image" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Navigation -->
+
+                <!-- FAQ's -->
+                <div class="col-lg-9 col-md-8 col-12">
+                  <div class="tab-content p-0">
+                    <div class="tab-pane fade show active" id="payment" role="tabpanel">
+                      <div class="d-flex mb-4 gap-4 align-items-center">
+                        <div>
+                          <span class="badge bg-label-primary rounded w-px-50 py-2">
+                            <i class="bx bxs-graduation bx-26px mt-50"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h5 class="mb-0">
+                            <span class="align-middle">Proforma </span>
+                          </h5>
+                          <span>Nursing Institute</span>
+                        </div>
+                      </div>
+                      <form method="post" action="#" enctype="multipart/form-data">
+                        <div class="row g-6">
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-first-name">Copy of G.O in which the institution was permitted to start Para Medical Course (to be enclosed)</label>
+                            <input type="file" id="goform" name="goform" class="form-control" placeholder="upload GO file">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the students of the institution were already permitted for</label> 
+                              <label class="form-label" for="formtabs-last-name">the practical training in PHC or Government Hospital. If so copies enclosed.</label>
+                            
+                            <input type="file" id="filecopy" name="filecopy" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case of Diploma and Degree Nursing students, whether Tamil Nadu Nurses </label> 
+                             <label class="form-label" for="formtabs-last-name"> and Midwives Council and has granted recognition to the institution to</label>
+                             <label class="form-label" for="formtabs-last-name">conduct Diploma / Degree in Nursing course (Evidence Produced).</label>
+                            <input type="file" id="filecopy1" name="filecopy1" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case of Degree .course, whether continuance of provisional affiliation has been granted by the Tamil Nadu  MGR Medical University (evidence to produced)  </label>                
+                            <input type="file" id="filecopy2" name="filecopy2" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">The number of students to be  deputed for training proposed and their year of study (indicate I year, II year, III year, I Semester, II Semester </label>   
+                            <label  class="form-label" for="formtabs-last-name">or III Semester etc of the course.)</label>                
+                            <input type="file" id="filecopy3" name="filecopy3" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training in </label> 
+                            <label class="form-label" for="formtabs-last-name"> PHC or Government Hospital during the Academic Year of study The duration of proposed training period </label>
+                            <label class="form-label" for="formtabs-last-name">( No. of days / No. of weeks / No of months) to be indicated by the  institution specifically</label>
+                            <input type="file" id="filecopy4" name="filecopy4" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">The Academic year of study during which he students will be deputed to  </label> 
+                            <label class="form-label" for="formtabs-last-name">avail clinical facilities at PHC or Government Hospital to be indicated. 
+                              </label>                        
+                            <input type="file" id="filecopy5" name="filecopy5" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the feasibility report from the Deputy Director of Health Services / Joint Director </label> 
+                            <label class="form-label" for="formtabs-last-name">of Health Services to impart training to the Para Medical students has been obtained? The report 
+                              </label>                        
+                            <input type="file" id="filecopy6" name="filecopy6" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the Management is willing to pay the fees prescribed by the Government</label> 
+                            <label class="form-label" for="formtabs-last-name">to impart training to their Para Medical students. </label>   
+                                                  
+                            <input type="file" id="filecopy7" name="filecopy7" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case, whether the students were already permitted to avail facilities in PHC or  Government ·Hospitals more than 2 years for Diploma Course and more than  </label>
+                            <label class="form-label" for="formtabs-last-name"> 3 years for Degree courses whether the institution is willing to remit the double the rate of fee structure to each students for continuance of permission. </label>                         
+                            <input type="file" id="filecopy8" name="filecopy8" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                        </div>
+                        <div class="pt-6">
+                          <button type="submit" class="btn btn-primary me-4">Submit</button>
+                          <button type="reset" class="btn btn-danger me-4">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="tab-pane fade" id="delivery" role="tabpanel">
+                      <div class="d-flex mb-4 gap-4">
+                        <div>
+                          <span class="badge bg-label-primary rounded w-px-50 py-2">
+                            <i class="bx bxs-graduation bx-26px mt-50"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h5 class="mb-0">
+                            <span class="align-middle">Proforma</span>
+                          </h5>
+                          <span>ANM Institute</span>
+                        </div>
+                      </div>
+                      <form method="post" action="#" enctype="multipart/form-data" class="">
+                        <div class="row g-6">
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-first-name">Copy of G.O in which the institution was permitted to start Para Medical Course (to be enclosed)</label>
+                            <input type="file" id="goform" name="goform1" class="form-control" placeholder="upload GO file">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the students of the institution were already permitted for</label> 
+                              <label class="form-label" for="formtabs-last-name">the practical training in PHC or Government Hospital. If so copies enclosed.</label>
+                            
+                            <input type="file" id="filecopy01" name="filecopy01" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case of Diploma and Degree Nursing students, whether Tamil Nadu Nurses </label> 
+                             <label class="form-label" for="formtabs-last-name"> and Midwives Council and has granted recognition to the institution to</label>
+                             <label class="form-label" for="formtabs-last-name">conduct Diploma / Degree in Nursing course (Evidence Produced).</label>
+                            <input type="file" id="filecopy11" name="filecopy11" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case of Degree .course, whether continuance of provisional affiliation has been granted by the Tamil Nadu  MGR Medical University (evidence to produced)</label>                    
+                            <input type="file" id="filecopy21" name="filecopy21" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">The number of students to be  deputed for training proposed and their year of study (indicate I year, II year, III year,</label>   
+                            <label class="form-label" for="formtabs-last-name"> I Semester, II Semester or III Semester etc., of the course.) </label>             
+                            <input type="file" id="filecopy31" name="filecopy31" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training in PHC or Government Hospital during </label>  
+                            <label class="form-label" for="formtabs-last-name">the Academic Year of study The duration of proposed training period ( No. of days / No. of weeks / No of months) to be indicated by the  institution specifically  </label>
+                           
+                            <input type="file" id="filecopy41" name="filecopy41" class="form-control" placeholder="Upload File Copy">
+                            </div>
+                          
+                            <div class="col-md-12"> 
+                              <label class="form-label" for="formtabs-last-name">The Academic year of study during which he students will be deputed to avail clinical facilities at PHC or Government Hospital to be indicated. </label> 
+                              </div>
+                              <div class="col-md-6"> 
+                              <input type="date" id="toyear1" name="toyear1" class="form-control" placeholder="Upload File Copy">
+                              </div>
+                              <div class="col-md-6"> 
+                              <input type="date" id="toyear1" name="toyear1" class="form-control" placeholder="Upload File Copy">
+                               </div>
+                          <div class="col-md-12"> 
+                            <label class="form-label" for="formtabs-last-name">Whether the feasibility report from the Deputy Director of Health Services / Joint Director of of Health Services to impart training to the Para Medical</label>
+                            <label class="form-label" for="formtabs-last-name"> students has been obtained? </label> 
+                          </div>
+                          <div class="col-md-6"> 
+                            <select name="feasibility1" id="feasibility1" class="form-control">
+                              <option value="">Select</option>
+                                <option value="yes">YES</option>
+                                <option value="no">NO</option>
+                            </select>
+                            </div>
+                              <div class="col-md-6"> 
+                                <input type="date" id="toyear2" name="toyear2" class="form-control" placeholder="Choose Date">
+                              </div>
+                       
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the Management is willing to pay the fees prescribed by the Government</label> 
+                            <label class="form-label" for="formtabs-last-name">to impart training to their Para Medical students. </label>   
+                                                  
+                            <input type="file" id="filecopy77" name="filecopy77" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case, whether the students were already permitted to avail facilities in PHC or  Government ·Hospitals more than 2 years for Diploma Course and more than 3 years </label> 
+                            <label class="form-label" for="formtabs-last-name"> for Degree courses whether the institution is willing to remit the double the rate of fee structure to each students for continuance of permission.</label>                                                    
+                            <input type="file" id="filecopy88" name="filecopy88" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                        </div>
+                        <div class="pt-6">
+                          <button type="submit" class="btn btn-primary me-4">Submit</button>
+                          <button type="reset" class="btn btn-danger me-4">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="tab-pane fade" id="cancellation" role="tabpanel">
+                      <div class="d-flex mb-4 gap-4">
+                        <div>
+                          <span class="badge bg-label-primary rounded w-px-50 py-2">
+                            <i class="bx bxs-graduation bx-26px mt-50"></i>
+                          </span>
+                        </div>
+                        <div>
+                          <h5 class="mb-0">
+                            <span class="align-middle">Proforma</span>
+                          </h5>
+                          <span>Medical College</span>
+                        </div>
+                      </div>
+                      <form method="post" action="#" enctype="multipart/form-data">
+                        <div class="row g-6">
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-first-name">Copy of G.O in which the institution was permitted to start Para Medical Course (to be enclosed)</label>
+                            <input type="file" id="goform02" name="goform02" class="form-control" placeholder="upload GO file">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the students of the institution were already permitted for</label> 
+                              <label class="form-label" for="formtabs-last-name">the avail facilities in Practical Training in Primary Health Centre. If so copies enclosed.</label>
+                            <input type="file" id="filecopy02" name="filecopy02" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the students of the institution were already permitted for</label> 
+                              <label class="form-label" for="formtabs-last-name">the practical training in Corporation or Municipalities.If so copies enclosed.</label>           
+                            <input type="file" id="filecopy03" name="filecopy03" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">The number of students to be  deputed for training proposed and their year of study (indicate I year, II year, III year, I Semester, </label> 
+                            <label class="form-label" for="formtabs-last-name">II Semester or III Semester etc., of the course.)  </label>                        
+                            <input type="file" id="filecopy32" name="filecopy32" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training in PHC or Government Hospital  </label> 
+                            <label class="form-label" for="formtabs-last-name">during the Academic Year of study The duration of proposed training period ( No. of days / No. of weeks / No of months) to be indicated by the  institution specifically</label> 
+                            
+                            <input type="file" id="filecopy42" name="filecopy42" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12"> 
+                          <label class="form-label" for="formtabs-last-name">The Academic year of study during which he students will be deputed to  </label> 
+                          <label class="form-label" for="formtabs-last-name">avail clinical facilities at PHC or Government Hospital to be indicated. </label> 
+                        </div>
+                        <div class="col-md-6">  
+                          <input type="date" id="toyear04" name="toyear04" class="form-control" placeholder="Upload File Copy">
+                        </div>
+                        <div class="col-md-6">
+                          <input type="date" id="toyear04" name="toyear04" class="form-control" placeholder="Upload File Copy">
+                        </div>
+                        <div class="col-md-12"> 
+                        <label class="form-label" for="formtabs-last-name">Whether the feasibility report from the Deputy Director of Health Services / Joint Director of  of Health Services to impart training to the </label> 
+                        <label class="form-label" for="formtabs-last-name"> Para Medical students has been obtained?  </label>  
+                        </div>                      
+                          <div class="col-md-6"> 
+                            <select name="feasibility04" id="feasibility04" class="form-control">
+                              <option value="">Select</option>
+                            <option value="yes">YES</option>
+                            <option value="no">NO</option>
+                              </select>
+                          </div>
+                          <div class="col-md-6">
+                            <input type="date" id="toyear08" name="toyear08" class="form-control" placeholder="Choose Date">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">Whether the Management is willing to pay the fees prescribed by the Government</label> 
+                            <label class="form-label" for="formtabs-last-name">to impart training to their Para Medical students. </label>   
+                                                  
+                            <input type="file" id="filecopy90" name="filecopy90" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                          <div class="col-md-12">
+                            <label class="form-label" for="formtabs-last-name">In case, whether the students were already permitted to avail facilities in PHC or   Government ·Hospitals more than 2 years for Diploma Course and more than </label> 
+                            <label class="form-label" for="formtabs-last-name"> 3 years  for Degree courses whether the institution is willing to remit the double therate of fee structure to each students for continuance of permission  </label>                      
+                            <input type="file" id="filecopy80" name="filecopy80" class="form-control" placeholder="Upload File Copy">
+                          </div>
+                        </div>
+                        <div class="pt-6">
+                          <button type="submit" class="btn btn-primary me-4">Submit</button>
+                          <button type="reset" class="btn btn-danger me-4">Cancel</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- /FAQ's -->
+              </div>
+            </div>
+            <!--/ Content -->
+
+{% endblock content %}
+
+

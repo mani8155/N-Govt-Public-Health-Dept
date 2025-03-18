@@ -1,0 +1,43 @@
+{% extends 'phdbase_dashboard.html' %}
+{% block content %}
+
+
+<!-- Content -->
+<a href="nursing_inspection_add"><button type="button" class="btn btn-primary">Add</button></a>
+<br><br>
+  <div class="card">  
+      <h5 class="card-header pb-0 text-md-start text-center">Nursing Inspection List</h5>
+      <div class="card-datatable text-nowrap">
+          <table class="datatables-ajax table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Document Id</th>
+                      <th>Proforma Application Id</th>
+                      <th>Institute Name</th>
+                      <th>Institute District</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="showadmin_users">
+                <td>1</td>
+                <td>PHD2024240156</td>
+                <td>PHDMPHW20240156</td>
+                <td>Arun Nursing College</td>
+                <td>Vellore</td>
+                <td><a class="btn btn-icon btn-sm btn-primary" href="#"><i class="bx bxs-edit"></i></a>
+                    <a class="btn btn-icon btn-sm btn-danger" href="#"><i class="bx bxs-trash me-1"></i></a></td>
+                 <!--  -->
+              </tbody>
+              <!-- <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Institute Name</th>
+                    <th>G.O Copy</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot> -->
+          </table>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,717 @@
+
+
+
+
+{% extends 'phdbase.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% if obj.application_status == "Draft" %}
+   <h5 class="mt-2">Application / Nursing Proforma Details / <span class="badge bg-label-danger">{{ obj.application_status }}</span></h5>
+    {% else %}
+     <h5 class="mt-2">Application / Nursing Proforma Details / <span class="badge bg-label-success">{{ obj.application_status }}</span></h5>
+    {% endif %}
+
+    <div class="card mb-6">
+      <div class="card-header p-0 nav-align-top">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">
+              Institute Details
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+{#            <button class="nav-link" data-bs-toggle="tab" id="phc-tab" data-bs-target="#form-tabs-student" role="tab" aria-selected="false" tabindex="-1">#}
+{#              Student Details#}
+{#            </button>#}
+                <a class="nav-link" href="{% url 'nursing_student' rec_parent_id %}">
+              Student Details
+            </a>
+
+          </li>
+{#          <li class="nav-item" role="presentation">#}
+{#            <button class="nav-link" data-bs-toggle="tab" id="phc-tab" data-bs-target="#form-tabs-phc" role="tab" aria-selected="false" tabindex="-1">#}
+{#            PHC Details#}
+{#            </button>#}
+            <li>   <a class="nav-link" href="{% url 'nursing_phc_form' rec_parent_id %}">
+             PHC Details
+            </a></li>
+
+
+
+            <li class="nav-item" role="presentation">
+            <a class="nav-link" href="{% url 'nursing_check_list' rec_parent_id %}">
+           Final Submission
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="tab-content">
+        <!-- Personal Info -->
+        <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
+          <form method="POST" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+
+              <div class="card shadow">
+                  <!-- Row 1 -->
+                  <div class="row">
+                      <!-- Column 1 -->
+                      <div class="mb-3 col-md-6">
+                          <label for="institute_name">Institute Name</label>
+                          <input value="{{ institution_obj.institution_name }}" type="text" name="institution_psk_id"
+                                 class="form-control" placeholder="Enter Institute Name" readonly>
+                      </div>
+
+                      <!-- Column 2 -->
+                      <div class="mb-3 col-md-6">
+                          <label for="year_established">Year of Established</label>
+                          <input value="{{ institution_obj.year_of_established }}" type="text" name="year_of_establishment"
+                                 class="form-control" placeholder="Enter Year Established" readonly>
+                      </div>
+                  </div>
+
+                  <!-- Row 2 -->
+                  <div class="row">
+                      <!-- Column 3 -->
+
+                      {% if obj.application_status == "Draft" %}
+
+                          <div class="mb-3 col-md-6">
+                              <label for="facility_type">Course</label>
+                              <select class="select2 form-select" data-allow-clear="true" name="course_type_psk_id"
+                                      plcaholder="Select Couser"
+                                      required onchange="applicationIdGenerateFunction(this)">
+                                  <option selected="" disabled>-------Select Course-----</option>
+                                  {% for course in course_data %}
+                                      <option value="{{ course.psk_id }}"
+                                              {% if obj.course_type_psk_id == course.psk_id %}selected{% endif %}>
+                                          {{ course.course_name }}
+                                      </option>
+
+                                  {% endfor %}
+                              </select>
+                          </div>
+
+                      {% else %}
+                          <div class="mb-3 col-md-6">
+                              <label for="facility_type">Course</label>
+                              <select class="select2 form-select" data-allow-clear="true" name="course_type_psk_id"
+                                      plcaholder="Select Course" disabled>
+
+                                  {% for course in course_data %}
+                                      <option value="{{ course.psk_id }}"
+                                              {% if obj.course_type_psk_id == course.psk_id %}selected{% endif %}>
+                                          {{ course.course_name }}
+                                      </option>
+
+                                  {% endfor %}
+                              </select>
+                          </div>
+
+                      {% endif %}
+
+                      <div class="mb-3 col-md-6">
+                          <label for="financial_year">Academic Year</label>
+                          <input class="form-control" id="academic_year_input" name="academic_year" type="text" value="{{ company.company_academic_year }}" readonly>
+                      </div>
+
+                      <!-- Column 4 -->
+
+                  </div>
+
+                  <!-- Row 3 -->
+                  <div class="row">
+                      <!-- Column 5 -->
+                      <div class="mb-3 col-md-6">
+                          <label for="application_date">Application ID</label>
+                          <input type="text" id="document_id" name="document_id" value="{{ obj.document_id}}" class="form-control" readonly required>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                          <label for="application_date">Application Date</label>
+                          <input type="date" name="document_date" class="form-control"
+                                value="{{ obj.document_date }}" placeholder="DD/MM/YYYY" readonly>
+                      </div>
+
+                  </div>
+
+              </div>
+
+<hr>
+
+
+              <div class="row g-6 mt-4">
+
+                  <div class="col-md-12">
+                      <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">1. Copy of G.O in
+                          which
+                          the institution was permitted to start Nursing Medical Course
+                          <span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="gov_order_number" class="form-control"
+                                     value="{{ obj.gov_order_number }}" placeholder="G.O.NO" required>
+                          </div>
+                          <div class="col">
+                              <input type="date" name="gov_order_date" class="form-control"
+                                     value="{{ obj.gov_order_date }}" required>
+                          </div>
+                          <div class="col">
+                              <input type="file" name="gov_order_upload_uid" class="form-control"
+                                     accept="application/pdf"> <p id="output"></p>
+
+                                  {% for media in media_obj %}
+                                  {% if media.file_name == "gov_order_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12 mt-2">
+    <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">
+      2.	Whether the students of the institution were already permitted for the practical training in PHC. If so copy of the Government Order should be enclosed.
+    </label>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <select id="permitted_select" name="permitted_select" class="form-select" required>
+                <option value="" selected disabled>-- Select an Option --</option>
+                <option value="no" {% if not obj.permitted_in_phc_gov_no  %}selected{% endif %}>
+                    No
+                </option>
+                <option value="yes" {% if obj.permitted_in_phc_gov_no  %}selected{% endif %}>
+                    Yes
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" id="permitted_fields" style="display: none;">
+        <div class="col" id="go1">
+            <input type="text" value="{{ obj.permitted_in_phc_gov_no }}" name="permitted_in_phc_gov_no" class="form-control"
+                   placeholder="G.O.NO">
+        </div>
+        <div class="col" id="go2">
+            <input type="date" value="{{ obj.permitted_in_phc_gov_date }}"  name="permitted_in_phc_gov_date" class="form-control">
+        </div>
+        <div class="col" id="go3">
+
+
+           <input type="hidden" id="permitted_in_phc_upload_uid_hide" value="{{  filed_2 }}">
+
+            <input type="file" name="permitted_in_phc_upload_uid" class="form-control"
+                   accept="application/pdf">
+
+            {% for media in media_obj %}
+                {% if media.file_name == "permitted_in_phc_upload_uid" %}
+                    <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                       target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                {% endif %}
+            {% endfor %}
+
+
+            <p id="output"></p>
+        </div>
+    </div>
+</div>
+
+                  <div class="col-md-12">
+                      <label>3.	In case of Degree Nursing students, whether Tamil Nadu Nurses and Midwives Council has granted recognition to the institution to conduct Degree in Nursing course (Evidence Produced).  <span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="tnnmc_gov_no" class="form-control" value="{{ obj.tnnmc_gov_no }}"
+                                     placeholder="G.O.NO" required>
+                          </div>
+                          <div class="col">
+                              <input type="date" name="tnnmc_gov_date" class="form-control"
+                                     value="{{ obj.tnnmc_gov_date }}" required>
+                          </div>
+
+                          <div class="col">
+                              <select class="form-control" id="academic_year_select"
+                                      name="affiliation_mgr_university_acc_date" required>
+                                  <option value="" disabled selected>-------- Select --------</option>
+                                  {% if obj.affiliation_mgr_university_acc_date %}
+                                      <option value="{{ obj.affiliation_mgr_university_acc_date }}" selected>
+                                          {{ obj.affiliation_mgr_university_acc_date }}
+                                      </option>
+                                  {% endif %}
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <input type="file"  name="tnnmc_gov_upload_uid"
+                                     class="form-control" value="{{ obj.granted_recognition }}"> <p id="output"></p>
+
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "tnnmc_gov_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label>4.	Copy of the List of Recognized Colleges in the Tamil Nadu Nurses and Midwives Council Web site (Evidence Produced).<span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="recognized_colleges_list_tn_gov_no" class="form-control"
+                                     value="{{ obj.recognized_colleges_list_tn_gov_no }}" placeholder="G.O.NO" required>
+                          </div>
+                          <div class="col">
+                              <input type="date" name="recognized_colleges_list_tn_gov_date" class="form-control"
+                                     value="{{ obj.recognized_colleges_list_tn_gov_date }}" required>
+                          </div>
+
+
+                         <div class="col">
+                              <select class="form-control" id="academic_year_select2"
+                                      name="recognized_colleges_list_tn_gov_acc_date" required>
+                                  <option value="" disabled selected>-------- Select --------</option>
+                                  {% if obj.recognized_colleges_list_tn_gov_acc_date %}
+                                      <option value="{{ obj.recognized_colleges_list_tn_gov_acc_date }}" selected>
+                                          {{ obj.recognized_colleges_list_tn_gov_acc_date }}
+                                      </option>
+                                  {% endif %}
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <input type="file" name="recognized_colleges_list_tn_upload_uid" class="form-control"
+                                     accept="application/pdf" value="{{ obj.recognized_colleges_list_tn_upload_uid }}"
+                                     > <p id="output"></p>
+
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "recognized_colleges_list_tn_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label>5.	In case of Degree Nursing students, whether Indian Nursing Council has granted recognition to the institution to conduct Degree in Nursing course (Evidence Produced).<span
+                                  class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="recognized_colleges_list_inc_gov_no" class="form-control"
+                                     value="{{ obj.recognized_colleges_list_inc_gov_no }}" placeholder="G.O.NO"
+                                     required>
+                          </div>
+                          <div class="col">
+                              <input type="date" name="recognized_colleges_list_inc_gov_date" class="form-control"
+                                     value="{{ obj.recognized_colleges_list_inc_gov_date }}" required>
+                          </div>
+
+                        <div class="col">
+                              <select class="form-control" id="academic_year_select3"
+                                      name="recognized_colleges_list_inc_acc_date" required>
+                                  <option value="" disabled selected>-------- Select --------</option>
+                                  {% if obj.recognized_colleges_list_inc_acc_date %}
+                                      <option value="{{ obj.recognized_colleges_list_inc_acc_date }}" selected>
+                                          {{ obj.recognized_colleges_list_inc_acc_date }}
+                                      </option>
+                                  {% endif %}
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <input type="file" name="recognized_colleges_list_inc_upload_uid" class="form-control"
+                                     accept="application/pdf" value="{{ obj.recognized_colleges_list_inc_upload_uid }}"
+                                     > <p id="output"></p>
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "recognized_colleges_list_inc_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label>6.	Copy of the List of Recognized Colleges in the Indian Nursing Council Web site (Evidence Produced). </label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="inc_council_website_go_no" class="form-control"
+                                     value="{{ obj.inc_council_website_go_no }}" placeholder="G.O.NO">
+                          </div>
+                          <div class="col">
+                              <input type="date" name="inc_council_website_go_date" class="form-control"
+                                     value="{{ obj.inc_council_website_go_date }}">
+                          </div>
+
+                                    <div class="col">
+                              <select class="form-control" id="academic_year_select4"
+                                      name="inc_council_website_go_acc_date" required>
+                                  <option value="" disabled selected>-------- Select --------</option>
+                                  {% if obj.inc_council_website_go_acc_date %}
+                                      <option value="{{ obj.inc_council_website_go_acc_date }}" selected>
+                                          {{ obj.inc_council_website_go_acc_date }}
+                                      </option>
+                                  {% endif %}
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <input type="file" name="inc_council_website_upload_uid" class="form-control"
+                                     accept="application/pdf" value="{{ obj.inc_council_website_upload_uid }}"> <p id="output"></p>
+
+                                {% for media in media_obj %}
+                                  {% if media.file_name == "inc_council_website_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label>7	. Continuance of provisional affiliation granted by the Tamil Nadu MGR Medical University(Evidence Produced).<span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="text" name="affiliation_mgr_university_gov_no" class="form-control"
+                                     value="{{ obj.affiliation_mgr_university_gov_no }}" placeholder="G.O.NO" required>
+                          </div>
+                          <div class="col">
+                              <input type="date" name="affiliation_mgr_university_gov_date" class="form-control"
+                                     value="{{ obj.affiliation_mgr_university_gov_date }}" required>
+                          </div>
+
+                                 <div class="col">
+                              <select class="form-control" id="academic_year_select5"
+                                      name="affiliation_mgr_university_gov_acc_date" required>
+                                  <option value="" disabled selected>-------- Select --------</option>
+                                  {% if obj.affiliation_mgr_university_gov_acc_date %}
+                                      <option value="{{ obj.affiliation_mgr_university_gov_acc_date }}" selected>
+                                          {{ obj.affiliation_mgr_university_gov_acc_date }}
+                                      </option>
+                                  {% endif %}
+                              </select>
+                          </div>
+
+                          <div class="col">
+                              <input type="file" name="affiliation_mgr_university_upload_uid" class="form-control"
+                                     value="{{ obj.affiliation_mgr_university_upload_uid }}"> <p id="output"></p>
+
+                                {% for media in media_obj %}
+                                  {% if media.file_name == "affiliation_mgr_university_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+{#                  <div class="col-md-12">#}
+{#                      <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">8. Whether the#}
+{#                          Management is willing to pay the fees prescribed by the Government to impart training to their#}
+{#                          Medical students. <span class="text-danger fs-4">*</span></label>#}
+{#                      <input type="file" name="pay_fees_by_upload_uid" class="form-control"#}
+{#                             value="{{ obj.pay_fees_by_upload_uid }}">#}
+{##}
+{##}
+{#                       {% for media in media_obj %}#}
+{#                                  {% if media.file_name == "pay_fees_by_upload_uid" %}#}
+{#                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"#}
+{#                                         target="_blank"><i class='bx bxs-file-pdf'></i>View Existing PDF</a>#}
+{#                                  {% endif %}#}
+{#                              {% endfor %}#}
+{##}
+{#                  </div>#}
+{#              #}
+
+               <div class="col-md-12 mt-2">
+                      <label class="col-sm-3 col-form-label text-sm-end" for="pay_fees_by_upload">
+                          8. Whether the Management is willing to pay the fees prescribed by the Government to impart
+                          training to their Medical students.
+                          <span class="text-danger fs-4">*</span>
+                      </label>
+
+                      <div class="row mb-3">
+                          <div class="col-md-4">
+                              <select id="pay_fees_by_upload" name="pay_fees_by_upload" class="form-select" disabled>
+                                  <option value="" selected disabled>-- Select an Option --</option>
+                                  <option value="no" {% if obj.pay_fees_by_upload_uid == "no" %}selected{% endif %}>
+                                      No
+                                  </option>
+                                  <option value="yes" {% if obj.pay_fees_by_upload_uid == "yes" %}selected{% endif %}>
+                                      Yes
+                                  </option>
+                              </select>
+                          </div>
+
+
+                          <div class="col" id="go2">
+                              <label class="fw-bold">( Reference – as per G.O.(D).No.1258 dated: 20.11.2014 and G.O.(D).No.738 dated: 20.08.2020</label>
+                              <a id="pdf_view_link" href="{% static 'dph/(MBBS) Revision of fee structure.pdf' %}" target="_blank"
+                                 class="btn btn-outline-primary btn-sm ms-2">
+                                  <i class="fas fa-file-pdf"></i> View PDF
+                              </a>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+
+               <div class="col-md-12">
+                      <label for="double_rate_fees">
+                          9.	In case, whether the students were already permitted to avail facilities in PHC and more than 3 years for Medical courses whether the institution is willing to remit double the rate of fee structure to each student for continuance of permission.
+                          <span class="text-danger fs-4">*</span>
+                      </label>
+
+                      <div class="row mb-3">
+                          <div class="col-md-4">
+                              <select id="double_rate_fees" name="double_rate_fees" class="form-select" disabled>
+                                  <option value="" selected disabled>-- Select an Option --</option>
+                                   <option value="no" {% if obj.pervious_tieup_upload_uid == "no" %}selected{% endif %}>
+                                      No
+                                  </option>
+                                  <option value="yes" {% if obj.pervious_tieup_upload_uid == "yes" %}selected{% endif %}>
+                                      Yes
+                                  </option>
+                              </select>
+                          </div>
+                      </div>
+
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">10. Own Hospital Detail
+                          (Copy of Memorandum of Understanding [MOU]) <span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="file" name="own_hospital_mou_upload_uid" class="form-control"
+                                     value="{{ obj.own_hospital_mou_upload_uid }}"> <p id="output"></p>
+                                {% for media in media_obj %}
+                                  {% if media.file_name == "own_hospital_mou_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">11. Own Hospital
+                          Detail (Certificate of Registration of Clinical Establishment Act.) <span
+                                  class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="file" name="own_hospital_clinical_establishment_upload_uid"
+                                     class="form-control"
+                                     value="{{ obj.own_hospital_clinical_establishment_upload_uid }}"> <p id="output"></p>
+
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "own_hospital_clinical_establishment_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+{#                  <div class="col-md-12">#}
+{#                      <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-last-name">11. Previous Tie-Up#}
+{#                          with Public Health Department G.O and G.O date</label>#}
+{#                      <div class="row">#}
+{#                          <div class="col">#}
+{#                              <input type="text" name="previous_tieup_gov_no" class="form-control"#}
+{#                                     value="{{ obj.previous_tieup_gov_no }}" placeholder="G.O.NO">#}
+{#                          </div>#}
+{#                          <div class="col">#}
+{#                              <input type="date" name="previous_tieup_gov_date" class="form-control"#}
+{#                                     value="{{ obj.previous_tieup_gov_date }}">#}
+{#                          </div>#}
+{#                          <div class="col">#}
+{#                              <input type="file" name="pervious_tieup_upload_uid" class="form-control"#}
+{#                                     value="{{ obj.pervious_tieup_upload_uid }}">#}
+{##}
+{#                               {% for media in media_obj %}#}
+{#                                  {% if media.file_name == "pervious_tieup_upload_uid" %}#}
+{#                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"#}
+{#                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>#}
+{#                                  {% endif %}#}
+{#                              {% endfor %}#}
+{##}
+{#                          </div>#}
+{#                      </div>#}
+{#                  </div>#}
+
+                  <div class="col-md-12">
+                      <label>12. No due certificate of your previous batch of the internship training fees payment
+                          (Model Enclosed) along with a copy of the challan duly authenticated by the Chairman of the
+                          Trust <span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="file" name="no_dues_certificate_upload_uid" class="form-control"
+                                     value="{{ obj.no_dues_certificate_upload_uid }}"> <p id="output"></p>
+
+
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "no_dues_certificate_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-12">
+                      <label class="col-sm-3 col-form-label" for="formtabs-last-name">13. Consent Letter for 1000 Sq.Ft
+                          building <span class="text-danger fs-4">*</span></label>
+                      <div class="row">
+                          <div class="col">
+                              <input type="file" name="consent_letter_building_upload_uid" class="form-control"
+                                     >
+                                <p id="output"></p>
+
+                               {% for media in media_obj %}
+                                  {% if media.file_name == "consent_letter_building_upload_uid" %}
+                                      <a href="{{ PlatformURL }}crudapp/view/media/phpm02_application_301_master_dc1_media/{{ media.psk_id }}"
+                                         target="_blank"><i class='bx bxs-file-pdf text-danger'></i>{{ media.pdf_name }}</a>
+                                  {% endif %}
+                              {% endfor %}
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+
+            <div class="row mt-6">
+              <div class="col-md-6">
+
+                  <div class="col-sm-9">
+
+                      {% if obj.application_status == "Draft" %}
+                            <button type="submit" class="btn btn-primary me-3">Update</button>
+                      {% endif %}
+                  </div>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+
+
+          <div class="tab-pane fade" id="form-tabs-student" role="tabpanel">
+              <div class="card-body pt-0 px-0">
+                  <h6>Please first register the institute details.</h6>
+                  <p>After that, add the Student details.</p>
+
+              </div>
+          </div>
+
+               <div class="tab-pane fade" id="form-tabs-phc" role="tabpanel">
+              <div class="card-body pt-0 px-0">
+                  <h6>Please first register the institute details.</h6>
+                  <p>After that, add the PHC details.</p>
+
+              </div>
+          </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalToggleLabel"> Do you want to change your course?</h5>
+                                        <a href="{% url 'nursing_update' rec_parent_id %}" class="btn-close"
+                                                aria-label="Close"></a>
+                                    </div>
+                                    <div class="modal-body">
+                                        If you change the course, the old student details will be removed
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{% url 'nursing_update' rec_parent_id %}" class="btn btn-outline-secondary">
+                                            No
+                                        </a>
+{#                                        <a href="{% url 'change_course' rec_parent_id %}" class="btn btn-danger">Yes</a>#}
+                                        <a href="#" id="changeCourseBtn" class="btn btn-danger">Yes</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+  </div>
+
+
+    <script>
+
+    function applicationIdGenerateFunction(selectElement) {
+
+            let rec_parent_id = {{ rec_parent_id }}
+            let course = selectElement.value;
+
+            {#let documentId = document.getElementById('document_id').value;  // Get document_id value#}
+
+            let yesButton = document.getElementById('changeCourseBtn');
+            {#yesButton.href = `{% url 'change_course' rec_parent_id %}?course=${course}`;#}
+
+
+            let myModal = new bootstrap.Modal(document.getElementById('basicModal'));
+            myModal.show();
+
+            $.ajax({
+            url: "{% url 'ajax_application_id' %}",
+            data: {course_id: course, rec_parent_id: rec_parent_id},
+            success: function (data) {
+
+                let documentId = document.getElementById('document_id').value=data.application_id;
+                yesButton.href = `{% url 'nursing_change_course' rec_parent_id %}?course=${course}&document_id=${documentId}`;
+            },
+
+            error: function (error) {
+                console.error("Error:", error);
+            }
+
+        });
+
+        }
+    </script>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'my_app/js/custom.js' %}"></script>
+    <script src="{% static 'my_app/js/nursing_update.js' %}"></script>
+
+
+
+{% endblock content %}

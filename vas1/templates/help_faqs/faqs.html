@@ -1,0 +1,387 @@
+
+{% extends 'phdbase.html' %}
+{% load static %} 
+{% block content %}
+
+
+            <!-- Content -->
+            
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row mt-6">
+                <!-- Navigation -->
+                <div class="col-lg-3 col-md-4 col-12 mb-md-0 mb-4">
+                  <div class="d-flex justify-content-between flex-column nav-align-left mb-2 mb-md-0">
+                    <ul class="nav nav-pills flex-column">
+                      <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#payment">
+                          <i class="bx bx-credit-card faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Mandatory Documents</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#delivery">
+                          <i class="bx bx-shopping-bag faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Submission Process</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#cancellation">
+                          <i class="bx bx-rotate-left faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Payment</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#orders">
+                          <i class="bx bx-cube faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Approval and Rejection:</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#product">
+                          <i class="bx bx-cog faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Technical Issues</span>
+                        </button>
+                      </li>
+                      <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#amenmant">
+                          <i class="bx bx-cog faq-nav-icon me-1_5"></i>
+                          <span class="align-middle">Amendments</span>
+                        </button>
+                      </li>
+                    </ul>
+                    <div class="d-none d-md-block">
+                      <div class="my-4 d-flex justify-content-center">
+                        <img
+                          src="{% static 'assets/img/illustrations/sitting-girl-with-laptop.png' %}"
+                          class="img-fluid"
+                          width="240"
+                          alt="FAQ Image" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Navigation -->
+
+                <!-- FAQ's -->
+                <div class="col-lg-9 col-md-8 col-12">
+
+                  <div class="tab-content p-0">
+                    <div class="tab-pane fade show active" id="payment" role="tabpanel">
+                      <div id="accordionPayment" class="accordion">
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionPayment-1"
+                              aria-controls="accordionPayment-1">
+                              What are the mandatory documents I need to submit for approval?
+                            </button>
+                          </h2>
+
+                          <div id="accordionPayment-1" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              <ul>
+                                <li>Institute Registration Certificate</li>
+                                <li>Accreditation Certificate from the Government/Medical Council</li>
+                                <li>List of Faculty and Staff (including qualifications and experience)</li>
+                                <li>Infrastructure and Facilities Verification Report</li>
+                                <li>Annual Performance Report (if applicable)</li>
+                                <li>Public Health Program Participation Record</li>
+                                <li>Any additional documents requested as per the department guidelines</li>
+                            </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-2"
+                              aria-controls="accordionPayment-2">
+                              How do I upload the required documents?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-2" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              You can upload the documents through the official Public Health Department website under the "Proforma Menu" section. Ensure each document is in the required format (PDF, JPG, PNG) and meets the size limit (maximum 10MB per file).
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionPayment-3"
+                              aria-controls="accordionPayment-3">
+                              Can I submit documents in languages other than English or Tamil?
+                            </button>
+                          </h2>
+                          <div id="accordionPayment-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              Only documents in English or Tamil will be accepted. If your documents are in any other language, you will need to provide a translation.
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="delivery" role="tabpanel">
+                     
+                      <div id="accordionDelivery" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionDelivery-1"
+                              aria-controls="accordionDelivery-1">
+                              What happens after I submit my documents?
+                            </button>
+                          </h2>
+
+                          <div id="accordionDelivery-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              After submitting the documents, you will receive an acknowledgment email confirming your submission. The department will review your application, and you will be notified once the approval process is complete (usually within 7-10 business days).
+                            </div>
+                          </div>
+                        </div>
+
+                        
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="cancellation" role="tabpanel">
+                    
+                      <div id="accordionCancellation" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionCancellation-1"
+                              aria-controls="accordionCancellation-1">
+                              Are there any fees associated with the document submission or approval process?
+                            </button>
+                          </h2>
+
+                          <div id="accordionCancellation-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              Yes, there may be an administrative fee for document submission and processing. The payment details and fee structure will be provided on the official Public Health Department website, under the "Payment Details" section.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionCancellation-2"
+                              aria-controls="accordionCancellation-2">
+                              How do I make the payment for the approval process?
+                            </button>
+                          </h2>
+                          <div id="accordionCancellation-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              Payments can be made online through the official payment gateway on the Public Health Department website. Accepted payment methods include debit/credit cards, net banking, and UPI. Please ensure that you complete the payment before submitting the documents for approval.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-controls="accordionCancellation-3"
+                              data-bs-target="#accordionCancellation-3">
+                              What is the payment amount for document submission?
+                            </button>
+                          </h2>
+                          <div id="accordionCancellation-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              The payment amount varies depending on the type of institution and the specific program you are applying for. For detailed information, please visit the "Payment Details" section on the website or contact the department directly.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="orders" role="tabpanel">
+                     
+                      <div id="accordionOrders" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionOrders-1"
+                              aria-controls="accordionOrders-1">
+                              Is there a deadline for document submission?
+                            </button>
+                          </h2>
+
+                          <div id="accordionOrders-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              Yes, there are specific deadlines for document submission, which are typically mentioned in the guidelines for each program. Ensure that you submit your documents before the specified deadline to avoid delays in approval.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionDelivery-2"
+                              aria-controls="accordionDelivery-2">
+                              How will I know if my documents are approved?
+                            </button>
+                          </h2>
+                          <div id="accordionDelivery-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              Once your documents are reviewed and approved, you will receive an official approval notification through email, along with instructions on the next steps.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionDelivery-4"
+                              aria-controls="accordionDelivery-4">
+                              What if my documents are rejected?
+                            </button>
+                          </h2>
+                          <div id="accordionDelivery-4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              If your documents are rejected, you will be informed about the reasons for rejection. You will have the opportunity to correct the issues and resubmit the required documents.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="product" role="tabpanel">
+                      <div id="accordionProduct" class="accordion">
+                        <div class="card accordion-item active">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              aria-expanded="true"
+                              data-bs-target="#accordionProduct-1"
+                              aria-controls="accordionProduct-1">
+                              What should I do if I face technical issues while submitting documents or making a payment?
+                            </button>
+                          </h2>
+
+                          <div id="accordionProduct-1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                              If you encounter technical issues, try clearing your browser cache or using a different browser. If the issue persists, contact the technical support team at <a href="mailto:support@health.tn.gov.in">support@health.tn.gov.in</a> or call the helpline number provided on the website.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="amenmant" role="tabpanel">
+                      <div id="accordionProduct" class="accordion">
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionProduct-2"
+                              aria-controls="accordionProduct-2">
+                              Can I amend or update the submitted documents after submission? 
+                            </button>
+                          </h2>
+                          <div id="accordionProduct-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              Once you submit your documents, no further changes can be made. If you realize that you've submitted incorrect information, please contact the Public Health Department as soon as possible, and they will guide you through the process for making amendments.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="card accordion-item">
+                          <h2 class="accordion-header">
+                            <button
+                              class="accordion-button collapsed"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordionProduct-3"
+                              aria-controls="accordionProduct-3">
+                              How long does the approval process take?
+                            </button>
+                          </h2>
+                          <div id="accordionProduct-3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                              The approval process generally takes 7-10 business days after the submission and payment. However, in some cases, it may take longer depending on the volume of applications or if additional information is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <!-- /FAQ's -->
+              </div>
+
+              <!-- Contact -->
+              <div class="row my-6">
+                <div class="col-12 text-center my-6">
+                  <div class="badge bg-label-primary">Question?</div>
+                  <h4 class="my-2">You still have a question?</h4>
+                  <p class="mb-0">
+                    If you can't find question in our FAQ, you can contact us. We'll answer you shortly!
+                  </p>
+                </div>
+              </div>
+              <div class="row justify-content-center gap-sm-0 gap-6">
+                <div class="col-sm-6">
+                  <div class="py-6 rounded bg-faq-section text-center">
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-phone bx-26px m-50"></i>
+                    </span>
+                    <h5 class="mt-4 mb-1"><a class="text-heading" href="tel:+(1)25482568">+(1) 2548 2568</a></h5>
+                    <p class="mb-0">We are always happy to help</p>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="py-6 rounded bg-faq-section text-center">
+                    <span class="badge bg-label-primary p-2">
+                      <i class="bx bx-envelope bx-26px m-50"></i>
+                    </span>
+                    <h5 class="mt-4 mb-1"><a class="text-heading" href="mailto:help@help.com">help@help.com</a></h5>
+                    <p class="mb-0">Best way to get a quick answer</p>
+                  </div>
+                </div>
+              </div>
+              <!-- /Contact -->
+            </div>
+            <!--/ Content -->
+
+{% endblock content %}
+
+

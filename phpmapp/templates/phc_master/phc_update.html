@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Content -->
+<div class="card">
+    <h5 class="card-header">PHC Master</h5>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <!-- Block PSK ID -->
+                <div class="col-md-4 fv-plugins-icon-container">
+                    <label class="form-label" for="block_psk_id">Block Name</label>
+                    <select id="block_psk_id" class="form-control" name="block_psk_id" required>
+                        <option value="">Select Block/Block ID</option>
+                        {% for obj in block_data %}
+                            <option value="{{ obj.psk_id }}" {% if obj.psk_id == phc_data.block_psk_id %}selected{% endif %}>
+                                {{ obj.block_name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                </div>
+                
+
+                <!-- PHC Code -->
+                <div class="col-md-4">
+                    <label for="phc_code">PHC Code</label>
+                    <input class="form-control" type="text" id="phc_code" name="phc_code" placeholder="Enter PHC Code" value="{{ phc_data.phc_code }}" required>
+                </div>
+
+                <!-- PHC Name -->
+                <div class="col-md-4">
+                    <label for="phc_name">PHC Name</label>
+                    <input class="form-control" type="text" id="phc_name" name="phc_name" placeholder="Enter PHC Name" value="{{ phc_data.phc_name }}" required>
+                </div>
+
+                <!-- PHC Address -->
+                <div class="col-md-4">
+                    <label for="phc_address">PHC Address</label>
+                    <input class="form-control" type="text" id="phc_address" name="phc_address" placeholder="Enter PHC Address" value="{{ phc_data.phc_address }}" required>
+                </div>
+
+                <!-- PHC Phone -->
+                <div class="col-md-4">
+                    <label for="phc_phone">Phone</label>
+                    <input class="form-control" type="text" id="phc_phone" name="phc_phone" placeholder="Enter Phone Number" value="{{ phc_data.phc_phone }}" required>
+                </div>
+
+                <!-- PHC Mobile -->
+                <div class="col-md-4">
+                    <label for="phc_mobile">Mobile</label>
+                    <input class="form-control" type="text" id="phc_mobile" name="phc_mobile" placeholder="Enter Mobile Number" value="{{ phc_data.phc_mobile }}" required>
+                </div>
+
+                <!-- PHC Contact Person -->
+                <div class="col-md-4">
+                    <label for="phc_contact_person">Contact Person</label>
+                    <input class="form-control" type="text" id="phc_contact_person" name="phc_contact_person" placeholder="Enter Contact Person" value="{{ phc_data.phc_contact_person }}" required>
+                </div>
+
+                <!-- Active -->
+                <div class="col-md-2">
+                    <br/>
+                    <label class="switch switch-datk">
+                        <input type="checkbox" class="switch-input" name="active" {% if phc_data.active %}checked{% endif %} />
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on">
+                                <i class="bx bx-check"></i>
+                            </span>
+                            <span class="switch-off">
+                                <i class="bx bx-x"></i>
+                            </span>
+                        </span>
+                        <span class="switch-label">Active</span>
+                    </label>
+                </div>
+
+
+                {% comment %} <div class="col-md-2">
+                    <br/>
+                    <label class="switch switch-datk">
+                        <input type="checkbox" class="switch-input" name="active" {% if phc_data.active %}checked{% endif %} />
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on">
+                                <i class="bx bx-check"></i>
+                            </span>
+                            <span class="switch-off">
+                                <i class="bx bx-x"></i>
+                            </span>
+                        </span>
+                        <span class="switch-label">Active</span>
+                    </label>
+                </div>
+            </div> {% endcomment %}
+
+
+
+{% comment %} <div class="col-md-2">
+    <br/>
+    <label class="switch switch-datk">
+        <input type="checkbox" class="switch-input" name="phc_status" {% if phc_data.phc_status == 1 %}checked{% endif %} />
+        <span class="switch-toggle-slider">
+            <span class="switch-on">
+                <i class="bx bx-check"></i>
+            </span>
+            <span class="switch-off">
+                <i class="bx bx-x"></i>
+            </span>
+        </span>
+        <span class="switch-label">Allocated</span>
+    </label>
+</div> {% endcomment %}
+  
+  
+
+            
+
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+                <button type="submit" name="submitButton" class="btn btn-primary">Update</button>
+                <a href="{% url 'phc_list_Master' %}" class="btn btn-primary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!--/ Content -->
+
+{% endblock %}

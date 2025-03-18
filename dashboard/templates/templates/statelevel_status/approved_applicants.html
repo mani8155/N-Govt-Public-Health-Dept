@@ -1,0 +1,135 @@
+{% extends 'phdbase_dashboard.html' %}
+{% block content %}
+
+
+<a href="statelevel_dashboard"><button type="button" class="btn btn-primary">Back </button></a>
+<br><br>
+
+<div class="col-12 mb-6">
+    <div class="card">
+      <div class="card-widget-separator-wrapper">
+        <div class="card-body card-widget-separator">
+          <div class="row gy-4 gy-sm-1">
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center card-widget-1 border-end pb-4 pb-sm-0">
+                <div>
+                  <h4 class="mb-0">40</h4>
+                  <p class="mb-0">Nursing</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+              <hr class="d-none d-sm-block d-lg-none me-6">
+            </div>
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center card-widget-2 border-end pb-4 pb-sm-0">
+                <div>
+                  <h4 class="mb-0">20</h4>
+                  <p class="mb-0">ANM</p>
+                </div>
+                <div class="avatar me-lg-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+              <hr class="d-none d-sm-block d-lg-none">
+            </div>
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+                <div>
+                  <h4 class="mb-0">20</h4>
+                  <p class="mb-0">DGNM</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+                <div>
+                  <h4 class="mb-0">20</h4>
+                  <p class="mb-0">MBBS</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+                <div>
+                  <h4 class="mb-0">20</h4>
+                  <p class="mb-0">Bsc</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-2">
+              <div class="d-flex justify-content-between align-items-center border-end pb-4 pb-sm-0 card-widget-3">
+                <div>
+                  <h4 class="mb-0">20</h4>
+                  <p class="mb-0">MPHW</p>
+                </div>
+                <div class="avatar me-sm-6">
+                  <span class="avatar-initial rounded bg-label-success text-heading">
+                    <i class="bx bx-donate-heart bx-26px"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">  
+      <h5 class="card-header pb-0 text-md-start text-center">Approved Applicants List</h5>
+      <div class="card-datatable text-nowrap">
+          <table class="datatables-ajax table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Document Id</th>
+                      <th>Proforma Application Id</th>
+                      <th>Institute Name</th>
+                      <th>Institute District</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody id="showadmin_users">
+                <td>1</td>
+                <td>PHD2024240156</td>
+                <td>PHDMPHW20240156</td>
+                <td>Arun Nursing College</td>
+                <td>Vellore</td>
+                <td><a class="btn btn-icon btn-sm btn-primary" href="#"><i class="bx bxs-edit"></i></a>
+                    </td>
+                 <!--  -->
+              </tbody>
+              <!-- <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Institute Name</th>
+                    <th>G.O Copy</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot> -->
+          </table>
+        </div>
+    </div>
+{% endblock content %}

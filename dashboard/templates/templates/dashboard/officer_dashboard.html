@@ -1,0 +1,96 @@
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+<div class="col-md-12 col-xxl-4 mb-6">
+    <div class="card h-100">
+      <div class="d-flex align-items-end row">
+        <div class="col-7">
+          <div class="card-body">
+            <h5 class="card-title mb-1 text-nowrap">Welcome Back Raguram! 🎉</h5>
+            <p class="card-subtitle text-nowrap mb-3">Inspection Officer Dashboard</p>
+            
+            <a href="javascript:;" class="btn btn-sm btn-primary mb-1">View Details</a>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card-body pb-0 text-end">
+            <img src="{% static 'assets/img/illustrations/prize-light.png'%}" width="91" height="144" class="rounded-start" alt="View Sales">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 col-xxl-12">
+    <div class="row g-6">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-primary h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-warning"><i class='bx bxs-analyse'></i></span>
+              </div>
+              <h4 class="mb-0">30</h4>
+            </div>
+            <p class="mb-2">Inspection Pending</p>
+            <p class="mb-0">
+              <a href="officer_pending_list" class="btn btn-warning btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-primary h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-hourglass bx-lg"></i></span>
+              </div>
+              <h4 class="mb-0">42</h4>
+            </div>
+            <p class="mb-2">Inspection Progress</p>
+            <p class="mb-0">
+              <a href="officer_progress_list" class="btn btn-info btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-warning h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-success"><i class='bx bx-message-square-add'></i></span>
+              </div>
+              <h4 class="mb-0">20</h4>
+            </div>
+            <p class="mb-2">Inspection Completed</p>
+            <p class="mb-0">
+              <a href="officer_completed_list" class="btn btn-success btn-sm rounded">View</a>
+              <!-- <span class="text-muted">than last week</span> -->
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card card-border-shadow-danger h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-2">
+              <div class="avatar me-4">
+                <span class="avatar-initial rounded bg-label-danger"><i class='bx bx-error-alt'></i></span>
+              </div>
+              <h4 class="mb-0">5</h4>
+            </div>
+            <p class="mb-2">Inspection Rejected</p>
+            <p class="mb-0">
+              <a href="officer_rejected_list" class="btn btn-danger btn-sm rounded">View</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}

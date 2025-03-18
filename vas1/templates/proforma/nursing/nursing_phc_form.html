@@ -1,0 +1,361 @@
+{% extends 'phdbase.html' %}
+{% load static %} 
+{% block content %}
+{#{% if application_obj.application_status == "Draft" %}#}
+{#   <h5 class="mt-2">Application / Nursing Proforma Details / <span class="badge bg-label-danger">{{ application_obj.application_status }}</span></h5>#}
+   <h5 class="mt-2">Application / Nursing Proforma Details / <span class="badge bg-label-danger">DRAFT</span></h5>
+{#    {% else %}#}
+{#   <h5 class="mt-2">Application / Nursing Proforma Details / <span class="badge bg-label-success">{{ application_obj.application_status }}</span></h5>#}
+{#    {% endif %}#}
+<div class="card mb-6">
+  <div class="card-header p-0 nav-align-top">
+    <ul class="nav nav-tabs" role="tablist">
+
+            <li class="nav-item" role="presentation">
+                     <a class="nav-link" href="{% url 'nursing_update' rec_parent_id %}">
+
+              Institute Details
+            </a>
+
+          </li>
+
+          <li class="nav-item" role="presentation">
+                <a class="nav-link" href="{% url 'nursing_student' rec_parent_id %}">
+              Student Details
+            </a>
+
+          </li>
+
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="student-details-tab" data-bs-toggle="tab" href="#form-tabs-account" role="tab" aria-selected="true">
+          PHC Details
+        </a>
+      </li>
+
+    <li class="nav-item" role="presentation">
+            <a class="nav-link" href="{% url 'nursing_check_list' rec_parent_id %}">
+           Final Submission
+            </a>
+          </li>
+
+    </ul>
+  </div>
+
+   <div class="tab-content">
+   <div class="tab-pane fade show active" id="form-tabs-account" role="tabpanel" aria-labelledby="student-details-tab">
+
+
+      <form class="form-control" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-4">
+
+                <div class="row w-100 p-6 g-6">
+
+{#<div class="switches-stacked">#}
+{#              <label class="switch switch-square">#}
+{#                <input type="radio" class="switch-input" name="switches-square-stacked-radio" onchange="phcAllocated(this)">#}
+{#                <span class="switch-toggle-slider">#}
+{#                  <span class="switch-on"></span>#}
+{#                  <span class="switch-off"></span>#}
+{#                </span>#}
+{#                <span class="switch-label">Allocated PHC</span>#}
+{#              </label>#}
+{##}
+{#              <label class="switch switch-square">#}
+{#                <input type="radio" class="switch-input" name="switches-square-stacked-radio"  checked="" onchange="phcUnAllocated(this)">#}
+{#                <span class="switch-toggle-slider">#}
+{#                  <span class="switch-on"></span>#}
+{#                  <span class="switch-off"></span>#}
+{#                </span>#}
+{#                <span class="switch-label">Un Allocated PHC</span>#}
+{#              </label>#}
+{##}
+{#            </div>#}
+
+
+
+
+<div class="row">
+  <div class="col-md-4 col-12 mb-4">
+    <label for="institution_distirict_psk_id" class="form-label">District <span class="text-danger fs-4">*</span></label>
+    <select name="district_psk_id" class="selectpicker w-100" data-style="btn-default" data-live-search="true" required onchange="districtInHud(this)">
+      {% for district in districts %}
+        <option value="{{ district.psk_id }}">{{ district.district_name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-md-4 col-12 mb-4">
+    <label for="institution_hud_psk_id" class="form-label">HUD <span class="text-danger fs-4">*</span></label>
+    <select id="institution_hud_psk_id" name="institution_hud_psk_id" class="form-control" required onchange="hudINBlock(this)">
+      <option selected disabled>-----Select HUD----</option>
+    </select>
+  </div>
+
+  <div class="col-md-4 col-12 mb-4">
+    <label for="institution_block_psk_id" class="form-label">Block <span class="text-danger fs-4">*</span></label>
+    <select id="institution_block_psk_id" name="institution_block_psk_id" class="form-control" required>
+      <option selected disabled>-----Select Block----</option>
+    </select>
+  </div>
+
+
+    <div class="col-md-4 col-12 mb-4">
+        <label for="name_of_phc_pskid" class="form-label">Filter <span class="text-danger fs-4">*</span></label>
+        <select id="phc_type" name="phc_type" class="form-control" required onchange="phcINBlockFromPhcType(this)">
+            <option selected disabled>-----Select Filter ----</option>
+
+            <option value="UN-ALLOCATED">Un Allocated PHC</option>
+            <option value="APPLIED">Applied PHC</option>
+            <option value="ALL-PHC">All PHC</option>
+            <option value="ALLOCATED">Allocated PHC</option>
+        </select>
+    </div>
+
+
+{#<div class="switches-stacked">#}
+{#  <label class="switch switch-square">#}
+{#    <input type="radio" class="switch-input" name="switches-square-stacked-radio" onchange="phcINBlockFromPhcType1(this)">#}
+{#    <span class="switch-toggle-slider">#}
+{#      <span class="switch-on"></span>#}
+{#      <span class="switch-off"></span>#}
+{#    </span>#}
+{#    <span class="switch-label">Un Allocated Phc</span>#}
+{#  </label>#}
+{##}
+{#  <label class="switch switch-square">#}
+{#    <input type="radio" class="switch-input" name="switches-square-stacked-radio" onchange="phcINBlockFromPhcType2(this)">#}
+{#    <span class="switch-toggle-slider">#}
+{#      <span class="switch-on"></span>#}
+{#      <span class="switch-off"></span>#}
+{#    </span>#}
+{#    <span class="switch-label">Applied PHC</span>#}
+{#  </label>#}
+{##}
+{##}
+{#      <label class="switch switch-square">#}
+{#    <input type="radio" class="switch-input" name="switches-square-stacked-radio" onchange="phcINBlockFromPhcType3(this)">#}
+{#    <span class="switch-toggle-slider">#}
+{#      <span class="switch-on"></span>#}
+{#      <span class="switch-off"></span>#}
+{#    </span>#}
+{#    <span class="switch-label">All PHC</span>#}
+{#  </label>#}
+{##}
+{##}
+{##}
+{#      <label class="switch switch-square">#}
+{#    <input type="radio" class="switch-input" name="switches-square-stacked-radio" onchange="phcINBlockFromPhcType4(this)">#}
+{#    <span class="switch-toggle-slider">#}
+{#      <span class="switch-on"></span>#}
+{#      <span class="switch-off"></span>#}
+{#    </span>#}
+{#    <span class="switch-label">Allocated PHC</span>#}
+{#  </label>#}
+{##}
+{#</div>#}
+
+
+
+
+  <div class="col-md-4 col-12 mb-4">
+    <label for="name_of_phc_pskid" class="form-label">PHC <span class="text-danger fs-4">*</span></label>
+    <select id="name_of_phc_pskid" name="name_of_phc_pskid" class="form-control" required>
+      <option selected disabled>-----Select PHC----</option>
+
+    </select>
+  </div>
+
+
+
+  {% if application_obj.application_status == "Draft" %}
+  <div class="col-md-1 col-12 mb-4 d-flex align-items-end">
+    <button type="submit" class="btn btn-label-success">
+      <i class="bx bx-check-square bx-xs me-1_5"></i>Save
+    </button>
+  </div>
+  {% endif %}
+</div>
+
+                </div>
+
+          </div>
+
+        </form>
+
+           <table class="table mt-5">
+            <thead>
+            <tr>
+
+                <th>District</th>
+                <th>Hud</th>
+                <th>Block</th>
+                <th>Name of the PHC</th>
+
+                <th>Action</th> <!-- For the save button -->
+            </tr>
+            </thead>
+            <tbody>
+    {% for obj in app_phc_data %}
+            <tr>
+
+                  <td>{% for district in districts %}
+                    {% if district.psk_id == obj.district_psk_id %}
+                        {{ district.district_name }}
+                    {% endif %}
+                {% endfor %}
+                </td>
+
+                  <td>{% for hud in hud_data %}
+                    {% if hud.psk_id == obj.hud_psk_id %}
+                        {{ hud.hud_name }}
+                    {% endif %}
+                {% endfor %}
+                </td>
+
+                  <td>{% for block in block_data %}
+                    {% if block.psk_id == obj.block_psk_id %}
+                        {{ block.block_name }}
+                    {% endif %}
+                {% endfor %}
+                </td>
+
+
+
+
+                <td>{% for phc in phc_data %}
+                    {% if phc.psk_id == obj.name_of_phc_pskid %}
+                        {{ phc.phc_name }}
+                    {% endif %}
+                {% endfor %}
+                </td>
+
+                <td>
+                    {% if application_obj.application_status == "Draft" %}
+                    <a href="{% url 'delete_mbbs_phc' obj.psk_id rec_parent_id %}"
+                       class="btn btn-icon btn-outline-danger"><i class="bx bx-trash bx-xs me-1_5"></i></a>
+                    {% endif %}
+                </td>
+
+            </tr>
+{% endfor %}
+            </tbody>
+        </table>
+
+      </div>
+
+
+<hr>
+     <div class="col-12 d-flex justify-content-between">
+                  <a class="btn btn-label-secondary btn-prev" href="{% url 'nursing_student' rec_parent_id %}">
+                    <i class="icon-base bx bx-left-arrow-alt scaleX-n1-rtl icon-sm ms-sm-n2 me-sm-2"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </a>
+                  <a class="btn btn-primary btn-next" href="{% url 'nursing_check_list' rec_parent_id %}">
+                    <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
+                    <i class="icon-base bx bx-right-arrow-alt scaleX-n1-rtl icon-sm me-sm-n2"></i>
+                  </a>
+                </div>
+
+    </div>
+</div>
+
+
+   <script>
+      function districtInHud(element) {
+          let district = element.value;
+          $.ajax({
+              url: "{% url 'ajax_district_relevant_hud' %}",
+              data: {district_id: district},
+              success: function (data) {
+                  hud_data_list = data.hud_data
+                  {#let institution_code = document.getElementById('institution_code');#}
+                  let hud_filed = document.getElementById('institution_hud_psk_id');
+
+                  {#institution_code.value = data.ins_code;#}
+
+                  hud_filed.innerHTML = "";
+                  hud_filed.innerHTML = `<option value="" selected="" disabled>-----Select HUD----</option>`;
+
+                  for (let i = 0; i < hud_data_list.length; i++) {
+                      let hud = hud_data_list[i]; // Get the current object
+                      hud_filed.innerHTML += `<option value="${hud.psk_id}">${hud.hud_name}</option>`;
+                  }
+              },
+
+              error: function (error) {
+                  console.error("Error:", error);
+              }
+
+          });
+      }
+  </script>
+
+<script>
+    function hudINBlock(element){
+        let hud = element.value;
+          $.ajax({
+              url: "{% url 'ajax_block_relevant_hud' %}",
+              data: {hud_id: hud},
+              success: function (data) {
+                  block_data_list = data.block_data
+                  let block_filed = document.getElementById('institution_block_psk_id');
+
+
+                  block_filed.innerHTML = "";
+                  block_filed.innerHTML = `<option value="" selected="" disabled>-----Select Block----</option>`;
+
+                  for (let i = 0; i < block_data_list.length; i++) {
+                      let block = block_data_list[i]; // Get the current object
+                      block_filed.innerHTML += `<option value="${block.psk_id}">${block.block_name}</option>`;
+                  }
+              },
+
+              error: function (error) {
+                  console.error("Error:", error);
+              }
+
+          });
+    }
+</script>
+
+
+     <script>
+    function phcINBlockFromPhcType(element){
+
+        let phcType = element.value;
+
+        let block = document.getElementById('institution_block_psk_id').value
+
+
+
+          $.ajax({
+              url: "{% url 'ajax_block_against_phc' %}",
+              data: {phcType: phcType, block: block},
+              success: function (data) {
+
+                  console.log(data);
+
+                  block_data_list = data.phc_data
+                  let block_filed = document.getElementById('name_of_phc_pskid');
+
+
+                  block_filed.innerHTML = "";
+                  block_filed.innerHTML = `<option value="" selected="" disabled>-----Select Block----</option>`;
+
+                  for (let i = 0; i < block_data_list.length; i++) {
+                      let block = block_data_list[i]; // Get the current object
+                      block_filed.innerHTML += `<option value="${block.psk_id}">${block.phc_name}</option>`;
+                  }
+              },
+
+              error: function (error) {
+                  console.error("Error:", error);
+              }
+
+          });
+    }
+</script>
+
+
+{% endblock content %}

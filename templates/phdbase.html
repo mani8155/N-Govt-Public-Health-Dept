@@ -1,0 +1,443 @@
+<!doctype html>
+{% load static %}
+<html
+  lang="en"
+  class="light-style layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="assets/"
+  data-template="horizontal-menu-template-no-customizer"
+  data-style="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>{{ favicon_caption}} FAQ's</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ favicon_logo }}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/boxicons.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icons.css' %}" />
+
+    <!-- Core CSS -->
+      <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/core.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/rtl/theme-default.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+
+     <!-- Vendors CSS -->
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/typeahead-js/typeahead.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/select2/select2.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/flatpickr/flatpickr.css' %}" />
+     <link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+
+     <!-- Page CSS -->
+
+     <link rel="stylesheet" href="{% static 'assets/vendor/css/pages/app-invoice.css' %}" />
+      
+      
+      
+
+     <!-- Helpers -->
+     <script src="{% static 'assets/vendor/js/helpers.js'%}"></script>
+     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+     <script src="{% static 'assets/js/config.js'%}"></script>
+      
+      
+       <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+    <style>
+        #example_filter {
+            padding-right: 20px;
+        }
+
+        #example_length {
+            padding-left: 20px;
+        }
+
+        #example_info {
+            padding-left: 20px;
+        }
+
+        .pagination {
+            padding-right: 20px;
+        }
+    </style>
+      
+      <style>
+          #template-customizer {
+              display: none !important; /* Ensures it's not visible */
+          }
+
+          input[readonly], textarea[readonly] {
+              background-color: #e9ecef !important;
+              opacity: 1;
+          }
+
+</style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+      <div class="layout-container">
+        <!-- Navbar -->
+
+        <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+          <div class="container-xxl">
+            <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
+        
+                
+              <a href="{% url 'help' %}" class="app-brand-link gap-2">
+                <img id="app_bar" src="{{ app_bar_logo }}" alt="Application Logo" style="height: 60px; width: auto;"/>
+                <span class="app-brand-text demo menu-text fw-bold text-heading">DPH</span>
+              </a>
+
+              <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
+                <i class="d-flex align-items-center justify-content-center"></i>
+              </a>
+            </div>
+
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="bx bx-menu bx-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+
+
+
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img id="applicant_pic" src="{% static 'assets/img/avatars/default.png' %}" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              <img id="applicant_pic2" src="{% static 'assets/img/avatars/default.png' %}" alt class="w-px-40 h-auto rounded-circle" />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 id="username" class="mb-0"></h6>
+                            <small id ="mem_id" class="text-muted"></small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'profile' %}">
+                        <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                      </a>
+                    </li>
+                      
+                    <li>
+                      <a class="dropdown-item" href="{% url 'resetpassword' %}">
+                        <i class="bx bx-cog bx-md me-3"></i><span>Reset Password</span>
+                      </a>
+                    </li>
+     
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="{% url 'loginpage' %}">
+                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+
+            <!-- Search Small Screens -->
+            <div class="navbar-search-wrapper search-input-wrapper container-xxl d-none">
+              <input
+                type="text"
+                class="form-control search-input border-0"
+                placeholder="Search..."
+                aria-label="Search..." />
+              <i class="bx bx-x bx-md search-toggler cursor-pointer"></i>
+            </div>
+          </div>
+        </nav>
+
+        <!-- / Navbar -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Content wrapper -->
+
+          <div class="content-wrapper">
+            <!-- Menu -->
+            <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+              <div class="container-xxl d-flex h-100">
+                <ul class="menu-inner">
+                  <!-- Dashboards -->
+             
+
+                  <!-- Layouts -->
+             
+
+                    
+                           <li class="menu-item" id="application">
+                    <a href="{% url 'application_navigation' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-customize"></i>
+                      <div data-i18n="Application">Application</div>
+                    </a>
+                  </li> &nbsp; &nbsp;
+                    
+                    &nbsp;
+                    
+       
+                  <li class="menu-item" id="download">
+                    <a href="{% url 'downloadapplication' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-download"></i>
+                      <div data-i18n="Download">Download</div>
+                    </a>
+                  </li>&nbsp; &nbsp;&nbsp;
+                  <li class="menu-item" id="upload">
+                    <a href="{% url 'uploaddocument' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-upload"></i>
+                      <div data-i18n="Upload">Upload</div>
+                    </a>
+                  </li>&nbsp; &nbsp;&nbsp;
+
+                  <li class="menu-item" id="status">
+                    <a href="{% url 'statusapplication' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-hourglass-bottom"></i>
+                      <div data-i18n="Status">Status</div>
+                    </a>
+                  </li>
+                    
+                              <li class="menu-item" id="institution_profile">
+                    <a href="{% url 'institution_profile' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bx-building-house"></i>
+                      <div >Profile</div>
+                    </a>
+                  </li> &nbsp;
+                    
+                         <li class="menu-item" id="helppage">
+                    <a href="{% url 'help' %}" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-help-circle"></i>
+                      <div data-i18n="Help Page">Help Page</div>
+                    </a>
+
+                  </li>
+                  <li class="menu-item" id="faqs">
+                    <a href="{% url 'faqs' %}" class="menu-link" >
+                      <i class="menu-icon tf-icons bx bxs-hand"></i>
+                      <div data-i18n="FAQ's">FAQ's</div>
+                    </a>
+
+                  </li>
+
+                </ul>
+              </div>
+            </aside>
+            <!-- / Menu -->
+
+        <!-- Sections:Start -->
+
+    <!-- Help Center Header: Start -->
+
+
+              <div class="container-xxl flex-grow-1 container-p-y">
+                  {% if messages %}
+                      {% for message in messages %}
+                          {% if message.tags == "error" %}
+                              <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                                   class="bs-toast toast toast-placement-ex m-2 bg-danger top-0 end-0 fade show">
+                                  <div class="toast-header">
+                                      <i class='bx bxs-error-alt'></i>&nbsp;
+                                      <div class="me-auto fw-semibold">Error</div>
+                                      <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                              aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body">{{ message }}</div>
+                              </div>
+                          {% elif message.tags == "success" %}
+                              <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                                   class="bs-toast toast toast-placement-ex m-2 bg-success top-0 end-0 fade show">
+                                  <div class="toast-header">
+                                      <i class='bx bx-list-check'></i>&nbsp;
+                                      <div class="me-auto fw-semibold">Success</div>
+                                      <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                              aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body">{{ message }}</div>
+                              </div>
+                               {% elif message.tags == "info" %}
+                               <div role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000"
+                                   class="bs-toast toast toast-placement-ex m-2 bg-info top-0 end-0 fade show">
+                                  <div class="toast-header">
+                                      <i class='bx bx-list-check'></i>&nbsp;
+                                      <div class="me-auto fw-semibold">Info</div>
+                                      <button type="button" class="btn-close" data-bs-dismiss="toast"
+                                              aria-label="Close"></button>
+                                  </div>
+                                  <div class="toast-body">{{ message }}</div>
+                              </div>
+                              
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+
+
+                  <br>
+                  {% block content %}
+                  {% endblock content %}
+
+
+
+                  <!-- / Footer -->
+
+                  <div class="content-backdrop fade"></div>
+              </div>
+              <!--/ Content wrapper -->
+          </div>
+
+
+
+        <!--/ Layout container -->
+      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
+
+    <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+    <div class="drag-target"></div>
+
+    <!--/ Layout wrapper -->
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    
+
+
+        <script>
+            let currentMenu = document.getElementById("{{ menu }}");
+            currentMenu.classList.add("active");
+        </script>
+
+        <script>
+
+            function getCookie(name) {
+                let value = `; ${document.cookie}`;
+                let parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+            }
+
+            window.onload = function () {
+                let userName = getCookie("saved_username");
+                console.log(userName);
+                $.ajax({
+                    url: "{% url 'applicant_user' %}",
+                    data: {userName: userName},
+                    success: function (data) {
+                        console.log("Response:", data);
+                        let userName = data.username
+                        let memberId = data.member_id
+                        let applicantPhoto = data.applicant_photo;
+                        let ApplicationType = data.application_type
+                        document.getElementById("username").textContent = userName;
+                        document.getElementById("mem_id").textContent = memberId;
+                        let applicantPic = document.getElementById("applicant_pic");
+                        let applicantPic2 = document.getElementById("applicant_pic2");
+                        if (applicantPhoto) {
+                            applicantPic.src = applicantPhoto;
+                            applicantPic2.src = applicantPhoto;
+                        } else {
+                            applicantPic.src = "{% static 'assets/img/avatars/default.png' %}";
+                        }
+
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
+                    }
+                });
+
+            }
+
+
+        </script>
+    
+
+
+
+<script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/hammer/hammer.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/i18n/i18n.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/typeahead-js/typeahead.js' %}"></script>
+        <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/select2/select2.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.js' %}"></script>
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+      <script src="{% static 'assets/vendor/libs/flatpickr/flatpickr.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/cleavejs/cleave.js' %}"></script>
+        <script src="{% static 'assets/vendor/libs/cleavejs/cleave-phone.js' %}"></script> -->
+        <script src="{% static 'assets/vendor/libs/jquery-repeater/jquery-repeater.js' %}"></script>
+   
+    
+
+        <!-- Main JS -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+        <!-- Page JS -->
+        <script src="{% static 'assets/js/offcanvas-send-invoice.js' %}"></script>
+        <script src="{% static 'assets/js/app-invoice-add.js' %}"></script>
+    
+    
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src=" https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    
+        <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    
+    
+    </div>
+    <!-- Page JS -->
+  </body>
+
+</html>
+
+

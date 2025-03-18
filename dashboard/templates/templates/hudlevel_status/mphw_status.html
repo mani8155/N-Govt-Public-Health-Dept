@@ -1,0 +1,141 @@
+
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+  <!-- Include jQuery and DataTables CSS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+  <a href="hud_dashboard"><button type="button" class="btn btn-primary">Back </button></a>
+  <br><br>
+<div class="card">  
+  <h5 class="card-header pb-0 text-md-start text-center">MPHW Pending List</h5>
+  &nbsp;&nbsp;
+  <div class="card-datatable text-nowrap">
+    <table class="datatables-ajax table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Document Id</th>
+          <th>Institute Name</th>
+          <th>Institute District</th>
+          <th>IO Detail</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="showadmin_users">
+        <tr>
+          <td>1</td>
+          <td>PHD2024240156</td>
+          <td>Arun Nursing College</td>
+          <td>Vellore</td>
+          <td>Raja Ram , Kamlesh </td>
+          <td><a class="btn btn-sm btn-primary" href="hud_app_progress">View</a></td>
+        </tr>
+        
+        <!-- Add more rows here as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Inspection Officer List</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <form class="source-item" method="POST" action="#">
+        {% csrf_token %}
+        <div class="mb-4" data-repeater-list="group-a">
+          <div class="repeater-wrapper pt-0 pt-md-9" data-repeater-item>
+            <div class="d-flex border rounded position-relative pe-0">
+              <div class="row w-100 p-6 g-6">
+                <div class="col-md-3 col-12 mb-md-0 mb-4">
+                  <p class="h6 repeater-title">Inspection officer</p>
+                  <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="inspection_officer_name_psk_id" name="inspection_officer_name_psk_id" >
+                    <option value="">-- Select --</option>  
+                    <option value="1">Raguram</option>  
+                    <option value="2">Anandraj</option>
+                    <option value="3">Ravi Kumar</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-12 mb-md-0 mb-4">
+                  <p class="h6 repeater-title">Designation</p>
+                  <input type="text" id="designation" name="designation" class="form-control" placeholder="Designation">
+                </div>
+                <div class="col-md-3 col-12 mb-md-0 mb-4">
+                  <p class="h6 repeater-title">District Name</p>
+                  <!-- <input type="text" id="district_name" name="district_name" class="form-control" placeholder="Enter District Name"> -->
+                  <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="district_name" name="district_name" >
+                    <option value="">-- Select --</option>  
+                    <option value="1">Chennai</option>  
+                    <option value="2">Kanchipuram</option>
+                    <option value="3">Tiruvallur</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-12 mb-md-0 mb-4">
+                  <p class="h6 repeater-title">Selected Inspector</p>
+                  <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="selection_type" name="selection_type" >
+                    <option value="">-- Select --</option>  
+                    <option value="1">Selected</option>  
+                    <option value="0">Not Selected</option>
+                  </select>
+                </div>
+              </div>
+              <div
+                class="d-flex flex-column align-items-center justify-content-between border-start p-2">
+                <i class="bx bx-x bx-lg cursor-pointer" data-repeater-delete></i>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-1">
+
+          </div>
+          <div class="col-2">
+            <button type="button" class="btn btn-sm btn-primary" data-repeater-create>
+              <i class="bx bx-plus bx-xs me-1_5"></i>Add Item
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Include DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('.datatables-ajax').DataTable({
+      "pageLength": 15,
+      "lengthMenu": [  
+        [10, 25, 50, 100], 
+        ['10', '25', '50', '100']
+      ],
+      "pagingType": "simple_numbers", 
+    });
+   
+  });
+</script>
+{% endblock content %}
+</body>
+</html>
+   

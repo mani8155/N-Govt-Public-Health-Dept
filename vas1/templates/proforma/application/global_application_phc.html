@@ -1,0 +1,137 @@
+{% extends 'phdbase.html' %}
+{% load static %} 
+{% block content %}
+
+   <h5 class="mt-2">Application / MBBS Proforma Details</h5>
+<div class="card mb-6">
+  <div class="card-header p-0 nav-align-top">
+    <ul class="nav nav-tabs" role="tablist">
+{##}
+{#      <li class="nav-item" role="presentation">#}
+{#        <a class="nav-link">#}
+{#          Institute Details#}
+{#        </a>#}
+{#      </li>#}
+{#      <li class="nav-item" role="presentation">#}
+{#        <!-- Change to proper tab link format -->#}
+{#        <a class="nav-link" >#}
+{#          Student Details#}
+{#        </a>#}
+{#      </li>#}
+
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="{% url 'mbbspplication' %}">
+              Student Details
+            </a>
+
+          </li>
+
+          <li class="nav-item" role="presentation">
+                <a class="nav-link" href="{% url 'mbbs_student' 2 %}">
+              Student Details
+            </a>
+
+          </li>
+
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="student-details-tab" data-bs-toggle="tab" href="#form-tabs-account" role="tab" aria-selected="true">
+          PHC Details
+        </a>
+      </li>
+
+    <li class="nav-item" role="presentation">
+            <a class="nav-link" href="{% url 'mbbs_check_list' 2 %}">
+           Final Submission
+            </a>
+          </li>
+
+    </ul>
+  </div>
+
+   <div class="tab-content">
+    <div class="tab-pane fade show active" id="form-tabs-account" role="tabpanel" aria-labelledby="student-details-tab">
+
+
+        <form class="source-item" method="POST" action="#" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-4">
+            <div class="repeater-wrapper" data-repeater-item>
+              <div class="d-flex border rounded position-relative pe-0">
+                <div class="row w-100 p-6 g-6">
+
+
+
+                      <div class="col-md-5 col-12 mb-md-0 mb-4">
+                    <p class="h6 repeater-title">Name of the PHC</p>
+                    <input type="text" name="name_of_phc" class="form-control" placeholder="Enter Name of PHC">
+                  </div>
+
+
+                  <div class="col-md-5 col-12 mb-md-0 mb-4">
+                    <p class="h6 repeater-title">No of Student</p>
+                    <input type="number" name="academic_no_of_student" class="form-control" placeholder="No of Student">
+                  </div>
+
+
+                      <div class="col-md-1 col-12 mb-md-0 mb-4">
+                        <p class="h6 repeater-title" style="visibility:hidden;">No of </p>
+                       <button type="submit" class="btn btn-label-success">
+                      <i class="bx bx-check-square bx-xs me-1_5"></i>Save
+                      </button>
+                    </div>
+
+                </div>
+
+{#                <div class="d-flex flex-column align-items-center justify-content-between border-start p-2">#}
+{#                  <i class="bx bx-x bx-lg cursor-pointer" data-repeater-delete></i>#}
+{#                </div>#}
+              </div>
+            </div>
+          </div>
+
+        </form>
+
+           <table class="table">
+            <thead>
+            <tr>
+
+                <th>Name of the PHC</th>
+                <th>No of Student</th>
+
+                <th>Action</th> <!-- For the save button -->
+            </tr>
+            </thead>
+            <tbody>
+    {% for obj in nursing_phc_data %}
+            <tr>
+
+                <td>{{ obj.name_of_phc }}</td>
+                <td>{{ obj.academic_no_of_student }}</td>
+                <td>
+                    <a href="#" class="btn btn-icon btn-outline-danger"><i class="bx bx-trash bx-xs me-1_5"></i></a>
+                </td>
+
+            </tr>
+{% endfor %}
+            </tbody>
+        </table>
+
+      </div>
+
+
+<hr>
+     <div class="col-12 d-flex justify-content-between">
+                  <button class="btn btn-label-secondary btn-prev">
+                    <i class="icon-base bx bx-left-arrow-alt scaleX-n1-rtl icon-sm ms-sm-n2 me-sm-2"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next">
+                    <span class="align-middle d-sm-inline-block d-none me-sm-2">Next</span>
+                    <i class="icon-base bx bx-right-arrow-alt scaleX-n1-rtl icon-sm me-sm-n2"></i>
+                  </button>
+                </div>
+
+    </div>
+</div>
+
+{% endblock content %}

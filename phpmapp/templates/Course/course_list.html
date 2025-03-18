@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<!-- Back Button -->
+
+
+<h4 class="fw-bold py-3 mb-4">Course</h4>
+
+<!-- Add New Button -->
+{#<a href="{% url 'phpm_company_create' %}" class="btn btn-primary">#}
+{#    <span class="tf-icons bx bx-list-plus"></span>&nbsp; Add#}
+{#</a>#}
+
+
+<!-- Data Table -->
+<div class="card mt-4">
+    <div class="table-responsive text-nowrap mt-3">
+        <table class="table py-3" id="example">
+            <thead>
+                <tr>
+                    <th>course_code</th>
+                    <th>course_name</th>
+                    <th>course_type</th>
+                    <th>course_duration</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody class="table-border-bottom-0">
+                {% for obj in response_data %}
+                    <tr>
+                        <td>{{ obj.course_code }}</td>
+                        <td>{{ obj.course_name }}</td>
+                        <td>{{ obj.course_type }}</td>
+                        <td>{{ obj.course_duration }}</td>
+                        <td>
+                            {% if obj.active %}
+                       <span class="badge bg-label-success">Active</span>
+                            {% else %}
+                            <span class="badge bg-label-danger">In Active</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <!-- Edit Button -->
+                            <a href="{% url 'phpm_update_course' obj.psk_id %}" class="btn btn-xs btn-primary">
+                                <i class="bx bxs-edit"></i>
+                            </a>
+
+                            <!-- Delete Button (Triggers Modal) -->
+                            <button type="button" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#modalToggle{{ obj.psk_id }}">
+                                <i class="bx bxs-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="modalToggle{{ obj.psk_id }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Delete</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this article?
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- Confirm Deletion -->
+                                    <a href="{% url 'phpm_delete_course' obj.psk_id %}" class="btn btn-danger">Yes</a>
+                                    <!-- Cancel Deletion -->
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock content %}

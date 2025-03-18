@@ -1,0 +1,74 @@
+
+{% extends 'phdbase.html' %}
+{% load static %}
+{% block content %}
+
+
+    <h5 class="pb-1 mb-6">Select Course</h5>
+
+    <div class="row mb-12 g-6">
+
+     <div class="col-md-6 col-lg-4">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Medical Courses</h5>
+                    <h6 class="card-title">( MBBS / MD / MS )</h6>
+                    <p>With supporting.</p>
+                    <a href="{% url 'mbbs_application_navigation' %}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Nursing</h5>
+                    <h6 class="card-title">( B.Sc Nursing / M.Sc Nursing / P.B.B.Sc Nursing )</h6>
+                    <p class="card-text">With supporting.</p>
+                    <a href="{% url 'nursing_application_navigation' %}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Diploma in General Nursing and Midwifery</h5>
+                    <h6 class="card-title">( DGNM )</h6>
+                    <p class="card-text">With supporting .</p>
+                    <a href="{% url 'dgmn_application_navigation' %}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Auxiliary Nurse Midwife</h5>
+                    <h6 class="card-title">( ANM )</h6>
+                    <p class="card-text">With supporting.</p>
+                    <a href="{% url 'anm_application_navigation' %}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 w-100">
+                <div class="card-body">
+                    <h5 class="card-title">Multi-Purpose Health Worker</h5>
+                    <h6 class="card-title">( MPHW )</h6>
+                    <p class="card-text">With supporting.</p>
+                    <a href="{% url 'mphw_application_navigation' %}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+{% endblock %}

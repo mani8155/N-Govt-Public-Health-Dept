@@ -1,0 +1,703 @@
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+<h5 class="mt-6" style="text-align:center;">MPHW Inspection Report</h5>
+<div class="card mb-6">
+  <div class="card-header p-0 nav-align-top">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#form-tabs-personal" role="tab" aria-selected="true">
+          Institute & Application
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-physical" role="tab" aria-selected="true">
+           Physical Facilities
+        </button>
+     </li>
+     <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-hostel" role="tab" aria-selected="true">
+        Hostel Facilities
+      </button>
+     </li>
+     <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-teaching" role="tab" aria-selected="true">
+        Teaching & Non Teaching Staff
+      </button>
+     </li>
+     <li class="nav-item" role="presentation">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#form-tabs-vehicle" role="tab" aria-selected="true">
+       Vehicle Details
+      </button>
+     </li>
+    </ul>
+  </div>
+
+  <div class="tab-content">
+    <!-- Personal Info -->
+    <div class="tab-pane fade active show" id="form-tabs-personal" role="tabpanel">
+      <form method="POST" action="#">
+        {% csrf_token %}
+        <div class="row g-6">
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Report Id</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="document_id" name="document_id" class="form-control" placeholder="Report Id">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Report Date</label>
+                  <div class="col-sm-9">
+                    <input type="date" id="document_date" name="document_date" class="form-control" placeholder="Report Date">
+                  </div>
+                </div>
+            </div>         
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-last-name">Assign Inspection Id</label>
+              <div class="col-sm-8">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="assign_inspection_pskid" name="assign_inspection_pskid" >
+                  <option value="">-- Select --</option>  
+                  <option value="PHD202501170141">PHD202501170141</option>  
+                  <option value="PHD202501170142">PHD202501170142</option>
+                  </select>
+              </div>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-last-name">Inspection officer Name</label>
+              <div class="col-sm-8">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="inspection_officer_name_pskid" name="inspection_officer_name_pskid" >
+                  <option value="">-- Select --</option>  
+                  <option value="1">Rajaram</option>  
+                  <option value="2">Sivasankar</option>
+                  <option value="3">Anandraj</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-first-name">Proforma Application Id</label>
+              <div class="col-sm-8">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="proforma_psk_id" name="proforma_psk_id" >
+                  <option value="">-- Select --</option>  
+                  <option value="PHD202501170141">PHD202501170141</option>  
+                  <option value="PHD202501170142">PHD202501170142</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Application Date</label>
+              <div class="col-sm-9">
+                <input type="text" id="proforma_document_date" name="proforma_document_date" class="form-control" placeholder="Application Date">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Institution Name</label>
+              <div class="col-sm-9">
+                <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Institution Name">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Institution Type</label>
+              <div class="col-sm-9">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="institution_type" name="institution_type" >
+                    <option value="">-- Select --</option>  
+                    <option value="1">Nursing</option>  
+                    <option value="2">ANM</option>
+                    <option value="3">MPHW</option>
+                    </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Instittue Address</label>
+              <div class="col-sm-9">
+                <textarea id="institute_address" name="institute_address" class="form-control" placeholder="Enter Address"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">District</label>
+              <div class="col-sm-9">
+                <input type="text" id="institute_district" name="institute_district" class="form-control" placeholder="Enter District">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Contact No</label>
+              <div class="col-sm-9">
+                <input type="text" id="institute_contact_no" name="institute_contact_no" class="form-control" placeholder="Enter Contact No">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Email Id</label>
+              <div class="col-sm-9">
+                <input type="text" id="institute_emailid" name="institute_emailid" class="form-control" placeholder="Enter Email Address">
+              </div>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Name of the Trust</label>
+              <div class="col-sm-9">
+                <input type="text" id="trust_name" name="trust_name" class="form-control" placeholder="Name of the Trust">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Total Area School</label>
+              <div class="col-sm-9">
+                <input type="text" id="total_area_proposed" name="total_area_proposed" class="form-control" placeholder="Total area of the proposed school">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Own (on) lease</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="trust_type" name="trust_type" placeholder="Own on Lease"> 
+              </div>
+            </div>
+          </div>      
+          
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Consent Ltr BOE </label>
+              <div class="col-sm-9">
+                <input type="text" id="letter_from_board" name="letter_from_board" class="form-control" placeholder="Consent Letter From Board Examination">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">No Stu Per Batch</label>
+              <div class="col-sm-9">
+                <input type="text" id="candidates_perbatch" name="candidates_perbatch" class="form-control" placeholder="No.of candidates per batch per year">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">CHC/PHC Name </label>
+              <div class="col-sm-9">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="phc_pskid" name="phc_pskid" >
+                  <option value="">-- Select --</option>  
+                  <option value="1">Nursing</option>  
+                  <option value="2">ANM</option>
+                  <option value="3">MPHW</option>
+                  </select>
+              </div>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Name of Hospital</label>
+              <div class="col-sm-9">
+                <input type="text" id="hospital_affiliated" name="hospital_affiliated" class="form-control" placeholder="Name of the Hospital to be affiliated (Mandatory)">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-first-name">Own field Practice area</label>
+              <div class="col-sm-8">
+                <select class="select2 form-select form-select" data-allow-clear="true" type="text" id="own_practice" name="own_practice" >
+                  <option value="">-- Select --</option>  
+                  <option value="yes">Yes</option>  
+                  <option value="no">No</option>
+                  </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-3 col-form-label text-sm-end" for="formtabs-first-name">Remarks</label>
+              <div class="col-sm-9">
+                <input type="text" id="officer_Remarks" name="officer_Remarks" class="form-control" placeholder="Remarks">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row mt-6">
+          <div class="col-md-6">
+            <div class="row justify-content-end">
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary me-3">Submit</button>
+                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Account Details -->
+    <div class="tab-pane fade" id="form-tabs-physical" role="tabpanel">
+      <form method="POST" action="#">
+        {% csrf_token %}
+        <div class="row g-6">
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Physical Facilities</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="physical_facility" name="physical_facility" class="form-control" placeholder="Physical Facilities">
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Building Plan</label>
+                  <div class="col-sm-7">
+                    <input type="file" id="building_plan" name="building_plan" class="form-control" placeholder="Building Plan">
+                  </div>
+                </div>
+            </div>         
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Nursing Laboratory</label>
+              <div class="col-sm-7">
+                <input type="text" id="nursing_laboratory" name="nursing_laboratory" class="form-control" placeholder="Nursing Laboratory + MCH Skill Lab(1500)">
+              </div>
+            </div>
+          </div> 
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Anatomy Lab-Sqft</label>
+              <div class="col-sm-7">
+                <input type="text" id="anatomy_sqft" name="anatomy_sqft" class="form-control" placeholder="Anatomy+Physio Lab-Sqft">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">MCH Lab-Sqft</label>
+              <div class="col-sm-7">
+                <input type="text" id="mch_lab_sqft" name="mch_lab_sqft" class="form-control" placeholder="MCH Lab-SQFT">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Community Lab-Sqft</label>
+              <div class="col-sm-7">
+                <input type="text" id="community_lab_sqft" name="community_lab_sqft" class="form-control" placeholder="Community Health Lab-Sqft">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Staff Room (500)-SQFT</label>
+              <div class="col-sm-7">
+                <input type="text" id="staff_room_sqft" name="staff_room_sqft" class="form-control" placeholder="Staff Room (500)-SQFT">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Faculty Room(1200)-sqft</label>
+              <div class="col-sm-7">
+                <input type="text" id="faculty_room_sqft" name="faculty_room_sqft" class="form-control" placeholder="Faculty Room(1200)-sqft">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Multipurpose Hall (1500)</label>
+              <div class="col-sm-7">
+                <input type="text" id="multipurpose_sqft" name="multipurpose_sqft" class="form-control" placeholder="Multipurpose Hall (1500)">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Class Room(2@1080=2160) </label>
+              <div class="col-sm-7">
+                <input type="text" id="classroom_sqft" name="classroom_sqft" class="form-control" placeholder="Class Room(2@1080=2160)">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Nutrition Laboratory(900)</label>
+              <div class="col-sm-7">
+                <input type="text" id="classroom_sqft" name="classroom_sqft" class="form-control" placeholder="Class Room(2@1080=2160)">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Library Cum Study (1200)</label>
+              <div class="col-sm-7">
+                <input type="text" id="library_sqft" name="library_sqft" class="form-control" placeholder="Library Cum Study (1200)">
+              </div>
+            </div>
+          </div>
+          <!------->
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Audio Visual Aids Room (600)</label>
+              <div class="col-sm-7">
+                <input type="text" id="audioroom_sqft" name="audioroom_sqft" class="form-control" placeholder="Audio Visual Aids Room (600) ">
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Provisions for Toilets (500)</label>
+              <div class="col-sm-7">
+                <input type="text" id="provision_toilets" name="provision_toilets" class="form-control" placeholder="Provisions for Toilets (500)">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Provisions for Bathroom (500) </label>
+              <div class="col-sm-7">
+                <input type="text" id="provision_bathroom" name="provision_bathroom" class="form-control" placeholder="Provisions for Bathroom (500)">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Sick Room (400)</label>
+              <div class="col-sm-7">
+                <input type="text" id="sick_room" name="sick_room" class="form-control" placeholder="Sick Room (400)">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Telephone with Number</label>
+              <div class="col-sm-7">
+                <input type="text" id="telephone_number" name="telephone_number" class="form-control" placeholder="Sick Room (400)">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row mt-6">
+          <div class="col-md-6">
+            <div class="row justify-content-end">
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary me-3">Submit</button>
+                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
+      <div class="tab-pane fade" id="form-tabs-hostel" role="tabpanel">
+        <form method="POST" action="#">
+          {% csrf_token %}
+          <div class="row g-6">
+              <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Double Room(12000)</label>
+                    <div class="col-sm-7">
+                      <input type="text" id="double_room" name="double_room" class="form-control" placeholder="Double Room(12000)">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="row">
+                    <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Sanitary for 5 Students-500</label>
+                    <div class="col-sm-7">
+                      <input type="file" id="sanitary_students" name="sanitary_students" class="form-control" placeholder="Sanitary for 5 Students-500">
+                    </div>
+                  </div>
+              </div>         
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Visitor Room (250)</label>
+                <div class="col-sm-7">
+                  <input type="text" id="visitor_room" name="visitor_room" class="form-control" placeholder="Visitor Room (250)">
+                </div>
+              </div>
+            </div> 
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Reading Room (125)</label>
+                <div class="col-sm-7">
+                  <input type="text" id="reading_room" name="reading_room" class="form-control" placeholder="Reading Room (125)">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Store (250) </label>
+                <div class="col-sm-7">
+                  <input type="text" id="store_detail" name="store_detail" class="form-control" placeholder="Store (250) ">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Recreation Room (250) </label>
+                <div class="col-sm-7">
+                  <input type="text" id="recreation_room" name="recreation_room" class="form-control" placeholder="Recreation Room (250) ">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Staff Room (500)-SQFT</label>
+                <div class="col-sm-7">
+                  <input type="text" id="staff_room_sqft" name="staff_room_sqft" class="form-control" placeholder="Staff Room (500)-SQFT">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Dining Hall (1500)</label>
+                <div class="col-sm-7">
+                  <input type="text" id="dining_hall" name="dining_hall" class="form-control" placeholder="Dining Hall (1500)">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Kitchen & Store (750)</label>
+                <div class="col-sm-7">
+                  <input type="text" id="kitchen_store" name="kitchen_store" class="form-control" placeholder="Kitchen & Store (750)">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Building Stability Certificate</label>
+                <div class="col-sm-7">
+                  <input type="file" id="building_certificate" name="building_certificate" class="form-control" placeholder="Building Stability Certificate (Revenue Department)">
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Sanitation Certificate</label>
+                <div class="col-sm-7">
+                  <input type="file" id="sanitation_certificate" name="sanitation_certificate" class="form-control" placeholder="Sanitation Certificate (Health Department) ">
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="row">
+                <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Occupation Certificate</label>
+                <div class="col-sm-7">
+                  <input type="file" id="occupation_certificate" name="occupation_certificate" class="form-control" placeholder="Occupation Certificate (Health Department) (Sec 33 of TNPH Act 1939) for Buildings">
+                </div>
+              </div>
+            </div>
+            <!------->
+  
+          </div>
+          <div class="row mt-6">
+            <div class="col-md-6">
+              <div class="row justify-content-end">
+                <div class="col-sm-9">
+                  <button type="submit" class="btn btn-primary me-3">Submit</button>
+                  <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+        <div class="tab-pane fade" id="form-tabs-teaching" role="tabpanel">
+          <form method="POST" action="#">
+            {% csrf_token %}
+            <div class="row g-6">
+                <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Principal</label>
+                      <div class="col-sm-7">
+                        <input type="text" id="principal" name="principal" class="form-control" placeholder="Principal">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                      <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Tutors</label>
+                      <div class="col-sm-7">
+                        <input type="text" id="tutors" name="tutors" class="form-control" placeholder="Tutors">
+                      </div>
+                    </div>
+                </div>         
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Non Teaching Staff</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="non_teaching_staff" name="non_teaching_staff" class="form-control" placeholder="Non Teaching Staff">
+                  </div>
+                </div>
+              </div> 
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Accountant cum Cashier</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="accountant_cashier" name="accountant_cashier" class="form-control" placeholder="Accountant cum Cashier">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-last-name">Clerk cum Typist</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="clerk_cum_typist" name="clerk_cum_typist" class="form-control" placeholder="Clerk cum Typist">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Driver</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="driver" name="driver" class="form-control" placeholder="Driver">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Cleaner</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="cleaner" name="cleaner" class="form-control" placeholder="Cleaner">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Office Assistant</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="office_assistant" name="office_assistant" class="form-control" placeholder="Office Assistant">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Sweeper</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="sweeper" name="sweeper" class="form-control" placeholder="Sweeper">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Hostel Staff</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="hostel_staff" name="hostel_staff" class="form-control" placeholder="Hostel Staff">
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Warden cum House Keeper</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="warden_housekeeper" name="warden_housekeeper" class="form-control" placeholder="Warden cum House Keeper">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Cook cum Helper</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="occupation_certificate" name="occupation_certificate" class="form-control" placeholder="Cook cum Helper">
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="row">
+                  <label class="col-sm-5 col-form-label text-sm-end" for="formtabs-first-name">Security Guard /Cowkidar</label>
+                  <div class="col-sm-7">
+                    <input type="text" id="occupation_certificate" name="occupation_certificate" class="form-control" placeholder="Security Guard /Cowkidar">
+                  </div>
+                </div>
+              </div>
+
+              <!------->
+    
+            </div>
+            <div class="row mt-6">
+              <div class="col-md-6">
+                <div class="row justify-content-end">
+                  <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary me-3">Submit</button>
+                    <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          </div> 
+
+          <div class="tab-pane fade" id="form-tabs-vehicle" role="tabpanel">
+            <form method="POST" action="#">
+              {% csrf_token %}
+              <div class="row g-6">
+                  <div class="col-md-6">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-first-name">Two Wheeler</label>
+                        <div class="col-sm-8">
+                          <input type="text" id="two_wheeler" name="two_wheeler" class="form-control" placeholder="Two Wheeler">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="row">
+                        <label class="col-sm-4 col-form-label text-sm-end" for="formtabs-first-name">Four Wheeler</label>
+                        <div class="col-sm-8">
+                          <input type="text" id="four_wheeler" name="four_wheeler" class="form-control" placeholder="Four Wheeler">
+                        </div>
+                      </div>
+                  </div>         
+                  
+                <!------->
+      
+              </div>
+              <div class="row mt-6">
+                <div class="col-md-6">
+                  <div class="row justify-content-end">
+                    <div class="col-sm-9">
+                      <button type="submit" class="btn btn-primary me-3">Submit</button>
+                      <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div> 
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

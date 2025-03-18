@@ -1,0 +1,100 @@
+{% extends 'phdbase.html' %}
+
+{% block content %}
+
+
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
+        <h5 class="card-header pb-0 text-md-start text-center">Track Your Application Status</h5>
+        <div class="card-datatable text-nowrap">
+{#            <table class="datatables-ajax table">#}
+{#                <thead>#}
+{#                <tr>#}
+{##}
+{#                    <th>Application ID</th>#}
+{#                    <th>Action</th>#}
+{#                </tr>#}
+{#                </thead>#}
+{#                <tbody>#}
+{##}
+{#                {% for obj in application_status_lists %}#}
+{#                    <tr>#}
+{#                      <td>#}
+{##}
+{##}
+{##}
+{#                                    {{ obj.document_id }}#}
+{##}
+{#                    </td>#}
+{##}
+{#                        <td>  <a href="{% url 'tracking_application_status' obj.psk_id %}" class="btn btn-sm btn-icon btn-label-primary">#}
+{#                      <span class="tf-icons bx bx-target-lock"></span>#}
+{#                  </a></td>#}
+{##}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#                </tr>#}
+{#                </tbody>#}
+{##}
+{#            </table>#}
+
+
+             <table class="table table-sm" id="example">
+                <thead>
+                <tr>
+                    <th class="fw-bold">Application ID</th>
+                       <th class="fw-bold">Status</th>
+                    <th class="fw-bold">Course Type</th>
+                    <th class="fw-bold">Course Name</th>
+
+                    <th class="fw-bold">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for obj in application_status_lists %}
+                    <tr>
+                      <td>{{ obj.document_id }}</td>
+
+                        <td>
+                            {% if obj.application_status == "Draft"  %}
+                            <span class="badge rounded-pill bg-label-danger">{{ obj.application_status }}</span>
+                            {% else %}
+                             <span class="badge rounded-pill bg-label-success">{{ obj.application_status }}</span>
+                            {% endif %}
+                        </td>
+
+                        {% for course in course_master %}
+                            {% if course.psk_id == obj.course_type_psk_id %}
+                                <td>{{ course.course_type }}</td>
+                                <td>{{ course.course_name }}</td>
+                                <td>
+                                    <a href="{% url 'view_application' obj.psk_id course.course_type %}" class="btn btn-icon">
+                                        <i class="icon-base bx bx-show icon-md"></i>
+                                    </a>
+
+                                  <a href="{% url 'tracking_application_status' obj.psk_id %}" class="btn btn-sm btn-icon btn-label-primary">
+                   <span class="tf-icons bx bx-target-lock"></span>
+              </a>
+
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+
+
+
+                    </tr>
+                {% endfor %}
+                </tr>
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
+
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+{% load static %} 
+{% block content %}
+
+<!-- Content -->
+<div class="card" data-select2-id="7">
+    <h5 class="card-header">Block</h5>
+    <div class="card-body" data-select2-id="6">
+        <form id="profileupdate" class="row g-6 fv-plugins-bootstrap5 fv-plugins-framework" action="#" method="POST" data-select2-id="formValidationExamples">
+            <!-- Block Details -->
+            {% csrf_token %}
+            {% comment %} <div class="col-12">
+                <h6>Block Create</h6>
+                <hr class="mt-0">
+            </div> {% endcomment %}
+
+            <!-- HUD PSK ID -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="hud_psk_id">HUD Name</label>
+                <select id="hud_psk_id" class="form-control" class="select2 form-select form-select-lg" name="hud_psk_id" required data-allow-clear="true">
+                    <option value="">HUD Name</option>
+                    {% for obj in huds_data %}
+                        <option value="{{ obj.psk_id }}">{{ obj.hud_name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+            
+
+            <!-- Block Code -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_code">Block Code</label>
+                <input class="form-control" type="text" id="block_code" name="block_code" placeholder="Enter Block Code">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Block Name -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_name">Block Name</label>
+                <input class="form-control" type="text" id="block_name" name="block_name" placeholder="Enter Block Name">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Block Address -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_address">Block Address</label>
+                <input class="form-control" type="text" id="block_address" name="block_address" placeholder="Enter Block Address">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Block Phone -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_phone">Phone</label>
+                <input class="form-control" type="text" id="block_phone" name="block_phone" placeholder="Enter Phone Number">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Block Mobile -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_mobile">Mobile</label>
+                <input class="form-control" type="text" id="block_mobile" name="block_mobile" placeholder="Enter Mobile Number">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Block Contact Person -->
+            <div class="col-md-4 fv-plugins-icon-container">
+                <label class="form-label" for="block_contact_person">Contact Person</label>
+                <input class="form-control" type="text" id="block_contact_person" name="block_contact_person" placeholder="Enter Contact Person">
+                <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+            </div>
+
+            <!-- Active (Boolean) -->
+            <div class="col-md-2">
+                <br/>
+                <label class="switch switch-datk">
+                    <input type="checkbox" class="switch-input" name="active" checked />
+                    <span class="switch-toggle-slider">
+                        <span class="switch-on">
+                            <i class="bx bx-check"></i>
+                        </span>
+                        <span class="switch-off">
+                            <i class="bx bx-x"></i>
+                        </span>
+                    </span>
+                    <span class="switch-label">Active</span>
+                </label>
+            </div>
+            
+
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+                <button type="submit" name="submitButton" class="btn btn-primary">Save</button>
+                <a href="{% url 'block_list' %}" class="btn btn-primary">Cancel</a>
+            </div>
+
+            <input type="hidden">
+        </form>
+    </div>
+</div>
+
+<!--/ Content -->
+
+{% endblock content %}

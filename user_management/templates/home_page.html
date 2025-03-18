@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% load customtags %}
+
+{% block content %}
+    
+
+
+ <p class="d-none">request Path: {% get_request_path request %}</p>
+
+
+{#    <div class="row">#}
+{#        <div class="col-md-12 py-2 pt-0">#}
+{#            <div class="nav-align-top">#}
+{#                <ul class="nav nav-tabs">#}
+{##}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link {% if request.path == home_page_url and not request.path in our_rol_dashboard_urls %}active{% endif %}"#}
+{#                           href="{% url 'get_home_page_url' %}">Home</a>#}
+{#                    </li>#}
+{##}
+{##}
+{#                    {% for dash in our_rol_dashboard %}#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link {% if request.path == dash.user_dashboard_url %}active{% endif %}"#}
+{#                               href="{% url 'home_page' dash.user_dashboard_url %}">{{ dash.user_dashboard_name }}</a>#}
+{#                        </li>#}
+{#                    {% endfor %}#}
+{##}
+{#                </ul>#}
+{#            </div>#}
+{##}
+{#                      </div>#}
+{#                  </div>#}
+    
+    <div class="card">
+   <iframe src="{{ load_page_url }}"  height="1000pvh" width="100%" allowfullscreen></iframe>
+</div>
+ 
+{% endblock %}
+

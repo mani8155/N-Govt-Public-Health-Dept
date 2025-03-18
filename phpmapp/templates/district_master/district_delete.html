@@ -1,0 +1,15 @@
+<!-- district_delete.html -->
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">Delete District</h5>
+        <div class="card-body">
+            <p>Are you sure you want to delete the district <strong>{{ district.district_name }}</strong>?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                <a href="{% url 'district_list' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">HUD / District Master</h5>
+        <div class="card-body">
+            <div class="text-start">
+                <a href="{% url 'hud_create' %}" class="btn btn-primary"><span class="tf-icons bx bx-list-plus"></span> Add</a>
+            </div>
+            <br/>
+            <table class="table" id="example">
+                <thead>
+                    <tr>
+                        <th>District/Directorate ID</th>
+                        <th>HUD Code</th>
+                        <th>HUD Name</th>
+                        <th>Contact Person</th>
+                        <th>Mobile</th>
+                        <th>Active</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for hud in huds %}
+                    
+                 
+                    
+                        <tr>
+                            <td>
+                                {% for obj in district_data %}
+                                {% if hud.district_psk_id == obj.psk_id %}
+                                <option value="{{ obj.psk_id }}">{{ obj.district_name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ hud.hud_code }}</td>
+                            <td>{{ hud.hud_name }}</td>
+                            <td>{{ hud.hud_contact_person }}</td>
+                            <td>{{ hud.hud_mobile }}</td>
+                            <td>
+                                {% if hud.active %}
+                                <span class="badge bg-label-success">Active</span>
+                                {% else %}
+                                <span class="badge bg-label-danger">In Active</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'hud_update' hud.psk_id %}">
+                                    <button type="button" class="btn btn-primary btn-sm zoom-hover">
+                                        <i class="bx bxs-edit bx-sm"></i>
+                                    </button>
+                                </a>
+
+                                <!-- Delete Button triggers the modal -->
+                                <button type="button" class="btn btn-danger btn-sm zoom-hover" data-bs-toggle="modal" data-bs-target="#modalToggleDelete{{ hud.psk_id }}">
+                                    <i class="bx bxs-trash bx-sm"></i>
+                                </button>
+
+
+
+                                <div class="modal fade" id="modalToggleDelete{{ hud.psk_id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Delete</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this hud?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!-- Delete button in modal, redirects to the hud_delete URL -->
+                                                <a href="{% url 'hud_delete' hud.psk_id %}" class="btn btn-danger"><i class="bx bxs-trash"></i> Yes</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bx bx-x"></i> No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

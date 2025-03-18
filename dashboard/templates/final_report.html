@@ -1,0 +1,117 @@
+{% extends 'phdbase_dashboard.html' %}
+{% load static %} 
+{% block content %}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- Basic Layout -->
+        <div class="row">
+            <div class="col-xl">
+                <div class="card mb-6">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Final Order</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="#">
+                            <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                    <label class="form-label" for="basic-icon-default-fullname">R.No (Order No)</label>
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-agent" class="input-group-text"><i
+                                                class="bx bx-user"></i></span>
+                                        <input type="text" class="form-control" id="order_no"
+                                            placeholder="R.No (Order No)" aria-label="R.No (Order No)" name="order_no"
+                                            aria-describedby="basic-icon-default-agent" />
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                    <label class="form-label" for="basic-icon-default-company">Order Date </label>   
+                                    <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text"><i
+                                                class="bx bx-calendar"></i></span>
+                                        <input type="date" id="order_date" class="form-control"
+                                            placeholder="Order Date" aria-label="Order Date"
+                                            name="order_date" aria-describedby="basic-icon-default-company2" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                    <label class="form-label" for="basic-icon-default-email">Report Document No</label>
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-paperclip"></i></span>
+                                        <input type="text" id="report_doc_no" name="report_doc_no" class="form-control" placeholder="Report Document No" >
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">Institution Name</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-building"></i></span>
+                                      <input type="text" id="institution_name" name="institution_name" class="form-control" placeholder="Institution Name" >
+                                  </div>
+                                </div>
+                                </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">Institution Type</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-building"></i></span>
+                                      <input type="text" id="institution_type" name="institution_type" class="form-control" placeholder="Institution Type" >
+                                  </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">Institution District</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-pin"></i></span>
+                                      <input type="text" id="institution_district" name="institution_district" class="form-control" placeholder="Institution District" >
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">Course</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bxs-graduation"></i></span>
+                                      <input type="text" id="course" name="course" class="form-control" placeholder="Course" >
+                                  </div>
+                                </div>
+
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">Acadamic Year</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                                      <input type="text" id="academic_year" name="academic_year" class="form-control" placeholder="Acadamic Year" >
+                                  </div>
+                                </div>
+                                </div>
+                              <div class="row">
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">PHC </label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-capsule"></i></span>
+                                      <input type="text" id="phc_name" name="phc_name" class="form-control" placeholder="PHC" >
+                                  </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6 col-sm-12 mb-6">
+                                  <label class="form-label" for="basic-icon-default-email">PHC District</label>
+                                  <div class="input-group input-group-merge">
+                                      <span class="input-group-text"><i class="bx bx-disc"></i></span>
+                                      <input type="text" id="phc_district" name="phc_district" class="form-control" placeholder="PHC District" >
+                                  </div>
+                                </div>
+                                </div>
+
+                            <button type="button" class="btn btn-primary">Submit</button>
+                            <a href="#"><button type="button" class="btn btn-danger">Back</button></a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock content %}

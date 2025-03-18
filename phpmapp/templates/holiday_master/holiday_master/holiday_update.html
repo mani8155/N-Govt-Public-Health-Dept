@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Content -->
+<div class="card" data-select2-id="7">
+    <h5 class="card-header">Update Holiday</h5>
+    <div class="card-body" data-select2-id="6">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+
+
+                <div class="col-md-4 fv-plugins-icon-container">
+                    <label class="form-label" for="holiday_name">Holiday Name</label>
+                    <input class="form-control" type="text" id="holiday_name" name="holiday_name" placeholder="Enter Holiday Name" value="{{ holiday.holiday_name }}">
+                </div>
+
+                <!-- Calendar Year -->
+                {% comment %} <div class="col-md-3 fv-plugins-icon-container">
+                    <label for="year" class="form-label">Calendar Year</label>
+                    <div class="input-group">
+                        <select class="form-control" id="calendar_year" name="calendar_year" required>
+                            <option value="" disabled>Select Year</option>
+                            {% for year in years %}
+                                <option value="{{ year }}" {% if year == holiday.calendar_year %} selected {% endif %}>
+                                    {{ year }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div> {% endcomment %}
+
+                {% comment %} <!-- Week Off -->
+                <div class="mb-3 col-md-3">
+                    <label for="week_off" class="form-label">Week Off</label>
+                    <select class="form-control" name="week_off" id="week_off" multiple required>
+                        <option value="Sunday" {% if 'Sunday' in selected_week_off %}selected{% endif %}>Sunday</option>
+                        <option value="Monday" {% if 'Monday' in selected_week_off %}selected{% endif %}>Monday</option>
+                        <option value="Tuesday" {% if 'Tuesday' in selected_week_off %}selected{% endif %}>Tuesday</option>
+                        <option value="Wednesday" {% if 'Wednesday' in selected_week_off %}selected{% endif %}>Wednesday</option>
+                        <option value="Thursday" {% if 'Thursday' in selected_week_off %}selected{% endif %}>Thursday</option>
+                        <option value="Friday" {% if 'Friday' in selected_week_off %}selected{% endif %}>Friday</option>
+                        <option value="Saturday" {% if 'Saturday' in selected_week_off %}selected{% endif %}>Saturday</option>
+                    </select>
+                </div> {% endcomment %}
+                
+
+                <!-- Holiday Type -->
+                <div class="mb-3 col-md-4">
+                    <label for="holiday_type" class="form-label">Holiday Type</label>
+                    <select class="form-control" name="holiday_type" id="holiday_type" required>
+                        <option value="" disabled>Select Holiday Type</option>
+                        <option value="Festival" {% if holiday.holiday_type == "Festival" %}selected{% endif %}>Festival</option>
+                        <option value="National" {% if holiday.holiday_type == "National" %}selected{% endif %}>National</option>
+                        <option value="Government" {% if holiday.holiday_type == "Government" %}selected{% endif %}>Government</option>
+                        <option value="Declared" {% if holiday.holiday_type == "Declared" %}selected{% endif %}>Declared</option>
+                        <option value="Others" {% if holiday.holiday_type == "Others" %}selected{% endif %}>Others</option>
+                    </select>
+                </div>
+
+                <!-- Holiday Date -->
+                <div class="col-md-4 fv-plugins-icon-container">
+                    <label class="form-label" for="holiday_date">Holiday Date</label>
+                    <input class="form-control" type="date" id="holiday_date" name="holiday_date" placeholder="Select Holiday Date" value="{{ holiday.holiday_date }}">
+                </div>
+
+                <!-- Active (Boolean) -->
+
+                <div class="col-md-2">
+                    <br/>
+                    <label class="switch switch-datk">
+                        <input type="checkbox" class="switch-input" name="active" {% if holiday.active %}checked{% endif %} />
+                        <span class="switch-toggle-slider">
+                            <span class="switch-on">
+                                <i class="bx bx-check"></i>
+                            </span>
+                            <span class="switch-off">
+                                <i class="bx bx-x"></i>
+                            </span>
+                        </span>
+                        <span class="switch-label">Active</span>
+                    </label>
+                </div>
+
+                {% comment %} <div class="col-md-4">
+                    <br/>
+                    <div class="form-check form-switch mb-2">
+                        <label class="form-check-label" for="active">Active</label>
+                        <input class="form-check-input" type="checkbox" name="active" id="active" {% if holiday.active %}checked{% endif %}>
+                    </div>
+                </div> {% endcomment %}
+
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-12 text-end">
+                <button type="submit" name="submitButton" class="btn btn-primary">Update</button>
+                <a href="{% url 'holiday_list' %}" class="btn btn-primary">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- Multi Select Script -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new MultiSelectTag('week_off'); // Ensure the ID matches your select element
+    });
+</script>
+
+<script>
+    // Set the current year for the select dropdown dynamically using JavaScript
+    const currentYear = new Date().getFullYear();
+    const yearSelect = document.getElementById('calendar_year');
+    
+    // Populate the dropdown with years from 2000 to current year
+    for (let i = 2020; i <= currentYear; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.text = i;
+        //if (i === currentYear) option.selected = true; // Set current year as selected by default
+        yearSelect.appendChild(option);
+    }
+</script>
+
+{% endblock content %}

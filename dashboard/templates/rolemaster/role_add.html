@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .invoice-container {
+      width: 80%;
+      margin: auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+    .invoice-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .invoice-details {
+      margin-bottom: 30px;
+    }
+    .invoice-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .invoice-table th, .invoice-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    .invoice-table th {
+      background-color: #f2f2f2;
+    }
+    .total-row {
+      font-weight: bold;
+      text-align: right;
+    }
+    .download-btn {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="invoice-container">
+    <div class="invoice-header">
+      <h1>Public Health Department - Nursing College</h1>
+      <p>Applicant No : PHD202420010402</p>
+    </div>
+
+    <div class="invoice-details">
+      <p ><strong>Institute Name:</strong> Indira Nursing Home</p>
+      <p><strong>Address:</strong> 22/55 Thotapalayam,Vellore</p>
+      <p><strong>Date:</strong> 20-01-2025</p>
+    </div>
+
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Description</th>
+          <th>Upload</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>1</td>
+          <td>Whether the students of the institution were already permitted to avail facilities for the practical training in PHC or Government Hospital. If so copies of G.Os to be enclosed.</td>
+          <td>1</td>
+        </tr>
+          <tr>
+            <td>2</td>
+            <td>In case of Diploma and Degree Nursing students, whether Tamil Nadu Nurses and Midwives Council and Indian Nursing Council has granted recognition to the institution to conduct Diploma / Degree in Nursing course (Evidence to be produced)</td>
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>In case of Degree.course, whether continuance of provisional affiliation has been granted by the Tamil Nadu MGR Medical University (evidence to be produced)</td>
+                
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>The number of students to be
+                deputed for training proposed and their year of study (indicate I year, II year, III year, I Semester, II Semester or III Semester etc., of the course.)</td>
+                
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training in PHC or Government Hospital during the Academic Year of study. The duration of prqposed training period ( No. of days / No. of weeks / No of months) to be indicated by the
+                institution specifically</td>
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>The Academic year of study during which he students will be deputed to avail clinical facilities at PHC or Government Hospital to be indicated.</td>
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Whether the feasibility report from the Deputy Director of Health Services / Joint Director of Health Services to impart training to the Para Medical students has been obtained? The report should contain particulars such as number of students, period of deputation and Academic year of study in respect of every course.</td>
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Whether the Management is willing to pay the fees prescribed by the Government to impart training to their Para Medical students.</td>
+            <td>1</td>  
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>In case, whether the students were already permitted to avail facilities in PHC or Government ·Hospitals more than 2 years for Diploma Course and more than 3 years for Degree courses,.whether the institution is willing to remit the double the rate of fee structure to each students for continuance of permission.</td>
+            <td>1</td>  
+          </tr>
+      </tbody>
+      <!-- <tfoot>
+        <tr class="total-row">
+          <td colspan="3">Total</td>
+          <td>$80</td>
+        </tr>
+      </tfoot> -->
+    </table>
+
+    <button class="download-btn" onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <!-- Include jsPDF and jsPDF AutoTable plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+
+  <script>
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont("helvetica", "normal");
+
+      // Add Title
+      doc.setFontSize(22);
+      doc.text("Public Health Department - Nursing College", 105, 20, null, null, "center");
+
+      // Add Invoice number
+      doc.setFontSize(12);
+      doc.text("Applicant No PHD202420010402", 105, 30, null, null, "center");
+
+      // Add From and To sections
+      doc.text("Institute Name: Indira Nursing Home", 20, 40);
+      doc.text("Address: 22/55 Thotapalayam,Vellore", 20, 50);
+      doc.text("Date: 20-01-2025", 20, 60);
+
+      // Add Invoice Table
+      const items = [
+        ["1","Copy of G.O in which the institution was permitted to start Para Medical (Course to be enclosed)", "2"],
+        ["2","Whether the students of the institution were already permitted to avail facilities for the practical training in PHC or Government Hospital. If so copies of G.Os to be enclosed", "2",],
+        ["3","In case of Diploma and Degree Nursing students, whether Tamil Nadu Nurses and Midwives Council and Indian Nursing Council has granted recognition to the institution to conduct Diploma / Degree in Nursing course (Evidence to be produced)", "1",],
+        ["4","In case of Degree.course, whether continuance of provisional affiliation has been granted by the Tamil Nadu MGR Medical University (evidence to be produced)", "1",],
+        ["5","The number of students to be deputed for training proposed and their year of study (indicate I year, II year, III year, I Semester, II Semester or III Semester etc., of the course.)", "1",],
+        ["6","As per syllabus and curriculum for the course, how many number of days the students are required to undertake the training in PHC or Government Hospital during the Academic Year of study. The duration of prqposed training period ( No. of days / No. of weeks / No of months) to be indicated by the institution specifically", "1",],
+        ["7","The Academic year of study during which he students will be deputed to avail clinical facilities at PHC or Government Hospital to be indicated.", "1",],
+        ["8","Whether the feasibility report from the Deputy Director of Health Services / Joint Director of Health Services to impart training to the Para Medical students has been obtained? The report should contain particulars such as number of students, period of deputation and Academic year of study in respect of every course.", "1",],
+        ["9","Whether the Management is willing to pay the fees prescribed by the Government to impart training to their Para Medical students.", "1",],
+        ["10","In case, whether the students were already permitted to avail facilities in PHC or Government ·Hospitals more than 2 years for Diploma Course and more than 3 years for Degree courses,.whether the institution is willing to remit the double the rate of fee structure to each students for continuance of permission.", "1",],
+        ];
+
+      // Using autoTable plugin to generate the table in PDF
+      doc.autoTable({
+        startY: 70,
+        head: [["S.No", "Description", "Upload"]],
+        body: items,
+      });
+
+      // Add Total
+      doc.text("Total: $80", 150, doc.lastAutoTable.finalY + 10);
+
+      // Save PDF
+      
+      doc.save("PHD202420010402.pdf");
+    }
+  </script>
+  
+</body>
+</html>

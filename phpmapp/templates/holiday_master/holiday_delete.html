@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Content -->
+<div class="card">
+    <h5 class="card-header">Delete Holiday</h5>
+    <div class="card-body">
+        <p>Are you sure you want to delete the holiday for <strong>{{ holiday.holiday_type }}</strong> on <strong>{{ holiday.holiday_date }}</strong>?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'holiday_list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+<!--/ Content -->
+
+{% endblock %}
